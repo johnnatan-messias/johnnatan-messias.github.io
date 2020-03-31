@@ -1,800 +1,830 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <title>Dados sobre o Covid-19</title>
-    <meta charset="utf-8">
-    <meta name="description"
-        content="Atualização sobre os números de casos confirmados, reportados e óbitos decorrentes do corona vírus. Os gráficos são atualizados diariamente.">
-    <meta property="og:image" content="https://johnnatan-messias.github.io/covid19/images/preview.png">
-    <meta property="og:image:type" content="image/jpeg">
-    <meta property="og:image:width" content="1794">
-    <meta property="og:image:height" content="884">
-    <meta name="keywords"
-        content="corona, vírus, virus, pandemia, dados, brasil, mundo, johnnatan messias, ciência da computação, monitor, covid-19, covid, transparência, projeto">
-    <meta http-equiv="Cache-control" content="no-cache">
-        <script data-ad-client="ca-pub-9807457463500719" async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <script src="./utils/js/chart.js/Chart.min.js"></script>
-    <script src="./utils/js/chart.js/utils.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+	<title>Johnnatan Messias</title>
 
-    <style>
-        canvas {
-            -moz-user-select: none;
-            -webkit-user-select: none;
-            -ms-user-select: none;
-        }
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Responsive Resume Template">
+	<meta name="author" content="Xiaoying Riley at 3rd Wave Media">
+	<link rel="shortcut icon" href="favicon.ico">
 
-        .chart-container-bar {
-            width: 500px;
-            margin-left: 40px;
-            margin-right: 40px;
-            margin-bottom: 40px;
-        }
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
 
-        .chart-container-main {
-            width: 900px;
-            margin-left: 40px;
-            margin-right: 40px;
-            margin-bottom: 40px;
-        }
+	<!-- FontAwesome JS-->
+	<script defer src="https://use.fontawesome.com/releases/v5.1.1/js/all.js"
+		integrity="sha384-BtvRZcyfv4r0x/phJt9Y9HhnN5ur1Z+kZbKVgzVBAlQZX4jvAuImlIz+bG7TS00a"
+		crossorigin="anonymous"></script>
+	<script data-ad-client="ca-pub-9807457463500719" async
+		src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-        .container {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-    </style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
 
-    <style type="text/css">
-        /* Chart.js */
-        @keyframes chartjs-render-animation {
-            from {
-                opacity: .99
-            }
+	<!-- Theme CSS -->
+	<link id="theme-style" rel="stylesheet" href="assets/css/pillar-1.css">
 
-            to {
-                opacity: 1
-            }
-        }
-
-        .chartjs-render-monitor {
-            animation: chartjs-render-animation 1ms
-        }
-
-        .chartjs-size-monitor,
-        .chartjs-size-monitor-expand,
-        .chartjs-size-monitor-shrink {
-            position: absolute;
-            direction: ltr;
-            left: 0;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            overflow: hidden;
-            pointer-events: none;
-            visibility: hidden;
-            z-index: -1
-        }
-
-        .chartjs-size-monitor-expand>div {
-            position: absolute;
-            width: 1000000px;
-            height: 1000000px;
-            left: 0;
-            top: 0
-        }
-
-        .chartjs-size-monitor-shrink>div {
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            left: 0;
-            top: 0
-        }
-    </style>
 
 </head>
 
 <body>
-    <div class="container">
-        <div class="row text-center inline">
-            <div class="col-12">
-                <h1>Número de casos reportados</h1>
-            </div>
-            <div class="col-12">
-                <h6>Atualizado em <span id="update-datetime"></span></h6>
-            </div>
-            <div class="col-2">
-                <h4>Mundo</h4>
-                <h4><span id="confirmed-world"></span></h4>
-                <h6>Ativos: <span id="active-world"></span></h6>
-                <h6>Recuperados: <span id="recovered-world"></span></h6>
-                <h6>Óbitos: <span id="deaths-world"></span></h6>
-            </div>
-            <div class="col-2">
-                <h4>Brasil</h4>
-                <h4><span id="confirmed-brazil"></span></h4>
-                <h6>Ativos: <span id="active-brazil"></span></h6>
-                <h6>Recuperados: <span id="recovered-brazil"></span></h6>
-                <h6>Óbitos: <span id="deaths-brazil"></span></h6>
-            </div>
-            <div class="col-2">
-                <h4>EUA</h4>
-                <h4><span id="confirmed-united-states"></span></h4>
-                <h6>Ativos: <span id="active-united-states"></span></h6>
-                <h6>Recuperados: <span id="recovered-united-states"></span></h6>
-                <h6>Óbitos: <span id="deaths-united-states"></span></h6>
-            </div>
-            <div class="col-2">
-                <h4>Itália</h4>
-                <h4><span id="confirmed-italy"></span></h4>
-                <h6>Ativos: <span id="active-italy"></span></h6>
-                <h6>Recuperados: <span id="recovered-italy"></span></h6>
-                <h6>Óbitos: <span id="deaths-italy"></span></h6>
-            </div>
-            <div class="col-2">
-                <h4>Espanha</h4>
-                <h4><span id="confirmed-spain"></span></h4>
-                <h6>Ativos: <span id="active-spain"></span></h6>
-                <h6>Recuperados: <span id="recovered-spain"></span></h6>
-                <h6>Óbitos: <span id="deaths-spain"></span></h6>
-            </div>
-            <div class="col-2">
-                <h4>Alemanha</h4>
-                <h4><span id="confirmed-germany"></span></h4>
-                <h6>Ativos: <span id="active-germany"></span></h6>
-                <h6>Recuperados: <span id="recovered-germany"></span></h6>
-                <h6>Óbitos: <span id="deaths-germany"></span></h6>
-            </div>
-        </div>
-        <div class="row text-center">
-            <div class="col-12">
-                <h2>Proporção de casos por país</h2>
-            </div>
-            <div class="col-12" id="bar-plot">
-            </div>
-        </div>
-        <div class="row text-center inline">
-            <div class="col-12">
-                <h2>Tabela dos números de casos por país</h2>
-            </div>
-            <div class="col-12">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">País</th>
-                            <th scope="col">Total de casos</th>
-                            <th scope="col">Novos casos</th>
-                            <th scope="col">Total de óbitos</th>
-                            <th scope="col">Novos casos de óbito</th>
-                            <th scope="col">Total de ativos</th>
-                            <th scope="col">Total de recuperados</th>
-                            <th scope="col">Novos recuperados</th>
-                            <th scope="col">Primeiro caso reportado</th>
-                        </tr>
-                    </thead>
-                    <tbody id="table-cases-per-country">
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="row text-center">
-            <div class="col-12">
-                <h2>Número de casos confirmados reportados</h2>
-            </div>
-            <div class="col-1"></div>
-            <div class="col-10">
-                <canvas id="canvas-days-since-fisrt-infection"></canvas>
-            </div>
-            <div class="col-1"></div>
-        </div>
-        </br>
-        <div class="row text-center">
-            <div class="col-12">
-                <h2>Número de óbitos reportados</h2>
-            </div>
-            <div class="col-1"></div>
-            <div class="col-10">
-                <canvas id="canvas-days-since-fisrt-death"></canvas>
-            </div>
-            <div class="col-1"></div>
-        </div>
-        </br>
-        <div class="row text-center">
-            <div class="col-12">
-                <h2>Número de casos confirmados por óbitos em cada país</h2>
-            </div>
-            <div class="col-1"></div>
-            <div class="col-10">
-                <canvas id="canvas-confirmed-per-deaths"></canvas>
-            </div>
-            <div class="col-1"></div>
-        </div>
-        <div class="row text-center inline" id="charts-top-30">
-            <div class="col-12">
-                <h2>Número de casos por país</h2>
-            </div>
-            <div class="col-12">
-                <h6>O eixo y possui escala diferente em cada gráfico</h6>
-            </div>
 
-        </div>
-    </div>
+	<script>
+		var names = {
+			"johnnatan_messias": ["<strong>Johnnatan Messias</strong>", "http://johnnatan.me"],
+			"fabricio_benevenuto": ["Fabrício Benevenuto", "http://homepages.dcc.ufmg.br/~fabricio"],
+			"mirella_moro": ["Mirella M. Moro", "http://homepages.dcc.ufmg.br/~mirella"],
+			"ricardo_rabelo": ["Ricardo Rabelo", "http://www.decom.ufop.br/imobilis/"],
+			"leandro_araujo": ["Leandro A. A. Silva", "https://scholar.google.com/citations?user=Yy_1dTgAAAAJ&hl"],
+			"pedro_melo": ["Pedro O. S Vaz de Melo", "http://homepages.dcc.ufmg.br/~olmo"],
+			"virgilio_almeida": ["Virgílio Almeida", "http://homepages.dcc.ufmg.br/~virgilio"],
+			"adriano_veloso": ["Adriano Veloso", "http://homepages.dcc.ufmg.br/~adrianov"],
+			"gabriel_magno": ["Gabriel Magno", "http://homepages.dcc.ufmg.br/~magno"],
+			"pollyanna_goncalves": ["Pollyanna Gonçalves", "http://homepages.dcc.ufmg.br/~pollyannaog"],
+			"daniel_hasan": ["Daniel Dalip", "https://scholar.google.com/citations?user=mdYg2R0AAAAJ&hl"],
+			"julio_reis": ["Julio C. S. Reis", "http://homepages.dcc.ufmg.br/~julio.reis"],
+			"filipe_ribeiro": ["Filipe N. Ribeiro", "http://homepages.dcc.ufmg.br/~filiperibeiro"],
+			"philipe_melo": ["Philipe Melo", "http://homepages.dcc.ufmg.br/~philipe"],
+			"marcos_goncalves": ["Marcos Gonçalves", "http://www.dcc.ufmg.br/dcc/?q=en/node/226"],
+			"lucas_schmidt": ["Lucas Schmidt", "http://lattes.cnpq.br/9441748418599315"],
+			"mainack_mondal": ["Mainack Mondal", "http://www.mpi-sws.org/~mainack/"],
+			"krishna_gummadi": ["Krishna P. Gummadi", "http://www.mpi-sws.org/~gummadi/"],
+			"saptarshi_ghosh": ["Saptarshi Ghosh", "https://sites.google.com/site/saptarshighosh/"],
+			"aniket_kate": ["Aniket Kate", "https://www.cs.purdue.edu/homes/akate/"],
+			"matheus_araujo": ["Matheus Araújo", "https://matheusaraujo.com"],
+			"ingmar_weber": ["Ingmar Weber", "http://ingmarweber.de"],
+			"lucas_bastos": ["Lucas Bastos", "http://homepages.dcc.ufmg.br/~lucasmbastos/"],
+			"emilio_zagheni": ["Emilio Zagheni", "http://www.zagheni.net"],
+			"joao_p_diniz": ["João P. Diniz", "http://homepages.dcc.ufmg.br/~jpaulo/"],
+			"manoel_miranda": ["Manoel Miranda", "http://homepages.dcc.ufmg.br/~manoelrmj/"],
+			"miller_ferreira": ["Miller Ferreira", "http://homepages.dcc.ufmg.br/~millermarques/"],
+			"elias_soares": ["Elias Soares", "http://homepages.dcc.ufmg.br/~eliassoares/"],
+			"juhi_kulshrestha": ["Juhi Kulshrestha", "http://www.mpi-sws.org/~juhi/"],
+			"motahhare_eslami": ["Motahhare Eslami", "http://web.engr.illinois.edu/~eslamim2/"],
+			"bilal_zafar": ["Muhammad Bilal Zafar", "http://www.mpi-sws.org/~mzafar/"],
+			"karrie_karahalios": ["Karrie Karahalios", "http://www.karriekarahalios.com/"],
+			"abhijnan_chakraborty": ["Abhijnan Chakraborty", "http://cse.iitkgp.ac.in/~abhijnan/"],
+			"niloy_ganguly": ["Niloy Ganguly", "http://www.facweb.iitkgp.ernet.in/~niloy/"],
+			"pantelis_vikatos": ["Pantelis Vikatos", "http://upatras.academia.edu/PantelisVikatos/"],
+			"haewoon_kwak": ["Haewoon Kwak", "http://haewoon.io/"],
+			"jisun_an": ["Jisun An", "http://jisun.me/"],
+			"gustavo_resende": ["Gustavo Resende", "#"],
+			"marcio_silva": ["Márcio Silva", "#"],
+			"jussara_almeida": ["Jussara Almeida", "http://www.dcc.ufmg.br/~jussara/"],
+			"marisa_vasconcelos": ["Marisa Vasconcelos", "https://scholar.google.com.br/citations?user=e5IvuJgAAAAJ&hl=en"],
+			"koustuv_saha": ["Koustuv Saha", "http://koustuv.com/"],
+			"mahmoudreza_babaei": ["Mahmoudreza Babaei", "https://people.mpi-sws.org/~babaei/"],
+			"lucas_henrique": ["Lucas Henrique", "https://homepages.dcc.ufmg.br/~lhenriquecl/"],
+			"oana_goga": ["Oana Goga", "http://lig-membres.imag.fr/gogao/"],
+			"elissa_redmiles": ["Elissa M. Redmiles", "https://www.cs.umd.edu/~eredmiles/"],
+			"hugo_sousa": ["Hugo Sousa", "https://homepages.dcc.ufmg.br/~hugosousa/"],
+			"kiran_garimella": ["Kiran Garimella", "https://users.ics.aalto.fi/kiran/"],
 
-    <script>
+		};
+		console.log(names)
+		function parse_author_to_html(author) {
+			return '<a href="' + author[1] + '" target="_blank">' + author[0] + '</a>';
+		}
 
-        var data = (function () {
-            var json = null;
-            $.ajax({
-                'async': false,
-                'global': false,
-                'url': "./data/data.json",
-                'dataType': "json",
-                'success': function (data) {
-                    json = data;
-                }
-            });
-            return json;
-        })();
+		function get_authors(authors) {
+			var str = "";
+			if (authors.length == 1) {
+				str = parse_author_to_html(names[authors[0]]) + ".";
+			}
+			else if (authors.length == 2) {
+				str = parse_author_to_html(names[authors[0]]) + " and " + parse_author_to_html(names[authors[1]]) + ".";
+			}
+			else {
+				for (var i = 0; i < authors.length - 1; i++) {
+					str += parse_author_to_html(names[authors[i]]) + ", ";
+				}
+				str += "and " + parse_author_to_html(names[authors[i]]) + ".";
+			}
+			return str
+		}
 
-        var date = Date.parse(data.last_update + ".000Z");
-        date = new Date(date).toLocaleString()
-        document.getElementById("update-datetime").textContent = date
+	</script>
+	<article class="resume-wrapper text-center position-relative">
+		<div class="resume-wrapper-inner mx-auto text-left bg-white shadow-lg">
+			<header class="resume-header pt-4 pt-md-0">
+				<div class="media flex-column flex-md-row">
+					<img class="mr-3 img-fluid picture mx-auto" src="assets/images/profile.jpg" alt="">
+					<div class="media-body p-4 d-flex flex-column flex-md-row mx-auto mx-lg-0">
+						<div class="primary-info">
+							<h1 class="name mt-0 mb-1 text-white text-uppercase text-uppercase">Johnnatan Messias</h1>
+							<div class="title mb-3">Ph.D. Student at MPI-SWS</div>
+							<ul class="list-unstyled">
+								<li class="mb-2"><a href="#"><i class="far fa-envelope fa-fw mr-2"
+											data-fa-transform="grow-3"></i>johnme [AT] mpi-sws [DOT] org</a></li>
+							</ul>
+						</div>
+						<!--//primary-info-->
+						<div class="secondary-info ml-md-auto mt-2">
+							<ul class="resume-social list-unstyled">
+								<li class="mb-3"><a
+										href="https://scholar.google.com.br/citations?user=EoGEeFAAAAAJ"><span
+											class="fa-container text-center mr-2"><i
+												class="fab fa-google fa-fw"></i></span>Google Schoolar</a>
+								</li>
+								<li class="mb-3"><a href="https://www.linkedin.com/in/johnnatan-messias/"><span
+											class="fa-container text-center mr-2"><i
+												class="fab fa-linkedin-in fa-fw"></i></span>linkedin.com/in/johnnatan-messias</a>
+								</li>
+								<li class="mb-3"><a href="https://github.com/johnnatan-messias/"><span
+											class="fa-container text-center mr-2"><i
+												class="fab fa-github-alt fa-fw"></i></span>github.com/johnnatan-messias</a>
+								</li>
+								<li class="mb-3"><a href="https://twitter.com/johnnatan_me"><span
+											class="fa-container text-center mr-2"><i
+												class="fab fa-twitter fa-fw"></i></span>@johnnatan_me</a></li>
+							</ul>
+						</div>
+						<!--//secondary-info-->
 
-        document.getElementById("confirmed-world").textContent = data.total['confirmed'].toLocaleString()
-        document.getElementById("active-world").textContent = data.total['active'].toLocaleString()
-        document.getElementById("recovered-world").textContent = data.total['recovered'].toLocaleString()
-        document.getElementById("deaths-world").textContent = data.total['deaths'].toLocaleString()
+					</div>
+					<!--//media-body-->
+				</div>
+				<!--//media-->
+			</header>
+			<div class="resume-body p-5">
+				<section class="resume-section summary-section mb-5">
+					<h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">About me</h2>
+					<div class="resume-section-content">
+						<p class="mb-0">I am a Ph.D. student at the Max Planck Institute for Software Systems (<a
+								href="https://www.mpi-sws.org/">MPI-SWS</a>) in the <a
+								href="http://socialnetworks.mpi-sws.org">Social Computing Research</a>
+							group. I am advised by <a href="http://www.mpi-sws.org/~gummadi/">Dr.
+								Krishna P. Gummadi</a>. I completed my Master's degree in Computer Science at the
+							Universidade Federal de Minas
+							Gerais (UFMG) with <a href="https://homepages.dcc.ufmg.br/~fabricio/">Dr.
+								Fabrício Benevenuto</a> as my advisor. During my MSc, I also held two research intern
+							positions at MPI-SWS in Saarbrücken, Germany. I studied Computer Science at Eötvös Loránd
+							University (ELTE) in Budapest, Hungary, in 2013/2014 during my exchange program (Science
+							Without Borders
+							- CAPES). I completed my undergraduate degree in Computer Science at the Universidade
+							Federal de Ouro Preto (UFOP) in 2015.
+							<br>
+							<br>
+							<u>My complete name</u>: Johnnatan Messias Peixoto Afonso.</p>
+					</div>
+				</section>
+				<!--//summary-section-->
+				<div class="row">
+					<div class="col-lg-9">
+						<section class="resume-section experience-section mb-5">
+							<h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">Selected
+								Publications
+							</h2>
+							<h6>For full list of publications, kindly check my <a
+									href="https://scholar.google.com/citations?user=EoGEeFAAAAAJ">Google Scholar</a> or
+								<a href="https://dblp.uni-trier.de/pers/hd/m/Messias:Johnnatan">DBLP</a> Profile.
+							</h6>
 
-        document.getElementById("confirmed-brazil").textContent = data.stats['Brasil']['confirmed'].toLocaleString()
-        document.getElementById("active-brazil").textContent = data.stats['Brasil']['active'].toLocaleString()
-        document.getElementById("recovered-brazil").textContent = data.stats['Brasil']['recovered'].toLocaleString()
-        document.getElementById("deaths-brazil").textContent = data.stats['Brasil']['deaths'].toLocaleString()
+							<div class="resume-section-content">
+								<div class="resume-timeline position-relative">
+									<article class="resume-timeline-item position-relative pb-5">
 
-        document.getElementById("confirmed-italy").textContent = data.stats['Itália']['confirmed'].toLocaleString()
-        document.getElementById("active-italy").textContent = data.stats['Itália']['active'].toLocaleString()
-        document.getElementById("recovered-italy").textContent = data.stats['Itália']['recovered'].toLocaleString()
-        document.getElementById("deaths-italy").textContent = data.stats['Itália']['deaths'].toLocaleString()
+										<div class="resume-timeline-item-header mb-2">
+											<div class="d-flex flex-column flex-md-row">
+												<h5 class="resume-timeline-item-header font-weight-bold mb-1">Journals
+												</h5>
+											</div>
+											<!--//row-->
+										</div>
+										<!--//resume-timeline-item-header-->
+										<ul class="list-inline">
+											<li>
+												<h6 class="resume-timeline-item-desc-heading font-weight-bold">Search
+													Bias Quantification: Investigating Political Bias in Social
+													Media
+													and Web Search</h6>
+											<li>
+												<script>document.write(get_authors(["juhi_kulshrestha", "motahhare_eslami", "johnnatan_messias", "bilal_zafar", "saptarshi_ghosh", "krishna_gummadi", "karrie_karahalios"]))</script>
+											</li>
+											<li>Information Retrieval Journal. Springer. Volume 22, Issue 1-2,
+												April 2019.</li>
 
-        document.getElementById("confirmed-germany").textContent = data.stats['Alemanha']['confirmed'].toLocaleString()
-        document.getElementById("active-germany").textContent = data.stats['Alemanha']['active'].toLocaleString()
-        document.getElementById("recovered-germany").textContent = data.stats['Alemanha']['recovered'].toLocaleString()
-        document.getElementById("deaths-germany").textContent = data.stats['Alemanha']['deaths'].toLocaleString()
+											<ul class="list-inline">
+												<li class="list-inline-item resume-degree-org"><a
+														href="#political_leaning_journal" data-toggle="collapse">
+														<span class="badge badge-dark badge-pill">Abstract</span></a>
+												</li>
+												<li class="list-inline-item resume-degree-org"><a
+														href="https://t.co/RaTVDuUiMG" target="_blank">
+														<span class="badge badge-info badge-pill">Link</span></a>
+												</li>
+												<li class="list-inline-item resume-degree-org"><a
+														href="bibtex/kulshrestha_political_it2017.bib" target="_blank">
+														<span class="badge badge-secondary badge-pill">BibTeX</span></a>
+												</li>
+												<li class="list-inline-item resume-degree-org"><a
+														href="https://twitter-app.mpi-sws.org/search-bias-split-view/"
+														target="_blank">
+														<span class="badge badge-primary badge-pill">System
+															1</span>
+													</a></li>
+												<li class="list-inline-item resume-degree-org"><a
+														href="http://twitter-app.mpi-sws.org/search-political-bias-of-users/"
+														target="_blank">
+														<span class="badge badge-primary badge-pill">System
+															2</span>
+													</a></li>
 
-        document.getElementById("confirmed-united-states").textContent = data.stats['EUA']['confirmed'].toLocaleString()
-        document.getElementById("active-united-states").textContent = data.stats['EUA']['active'].toLocaleString()
-        document.getElementById("recovered-united-states").textContent = data.stats['EUA']['recovered'].toLocaleString()
-        document.getElementById("deaths-united-states").textContent = data.stats['EUA']['deaths'].toLocaleString()
+											</ul>
+											</li>
+											<div id="political_leaning_journal" class="collapse">
+												<p class="font-italic"><b>Abstract:</b> Users frequently use search
+													systems on the
+													Web as well
+													as online social media to learn about
+													ongoing events and public opinion on personalities. Prior studies
+													have shown that the top-ranked results returned by these search
+													engines can shape user
+													opinion about the topic
+													(e.g., event or person) being searched. In case of polarizing topics
+													like politics,
+													where multiple competing perspectives exist, the political bias in
+													the
+													top search results
+													can play a significant role in shaping public opinion towards (or
+													away
+													from) certain perspectives.
+													Given the considerable impact that search bias can have on the user,
+													we
+													propose a generalizable
+													search bias quantification framework that not only measures the
+													political bias in ranked list
+													output by the search system but also decouples the bias introduced
+													by
+													the different
+													sources — input data and ranking system. We apply our framework to
+													study
+													the political
+													bias in searches related to 2016 US Presidential primaries in
+													Twitter
+													social media search
+													and find that both input data and ranking system matter in
+													determining
+													the final search
+													output bias seen by the users. And finally, we use the framework to
+													compare the relative bias
+													for two popular search systems — Twitter social media search and
+													Google
+													web search — for queries
+													related to politicians and political events. We end by discussing
+													some
+													potential solutions to
+													signal the bias in the search results to make the users more aware
+													of
+													them.</p>
+											</div>
+										</ul>
+										<ul class="list-inline">
+											<li>
+												<h6 class="resume-timeline-item-desc-heading font-weight-bold">Managing
+													Longitudinal Exposure of Socially Shared Data on the Twitter Social
+													Media</h6>
+											<li>
+												<script>document.write(get_authors(["juhi_kulshrestha", "motahhare_eslami", "johnnatan_messias", "bilal_zafar", "saptarshi_ghosh", "krishna_gummadi", "karrie_karahalios"]))</script>
+											</li>
+											<li>International Journal of Advances in Engineering Sciences and Applied
+												Mathematics (Special Issue on Data
+												Sciences), Springer, 2017.</li>
 
-        document.getElementById("confirmed-spain").textContent = data.stats['Espanha']['confirmed'].toLocaleString()
-        document.getElementById("active-spain").textContent = data.stats['Espanha']['active'].toLocaleString()
-        document.getElementById("recovered-spain").textContent = data.stats['Espanha']['recovered'].toLocaleString()
-        document.getElementById("deaths-spain").textContent = data.stats['Espanha']['deaths'].toLocaleString()
+											<ul class="list-inline">
+												<li class="list-inline-item resume-degree-org"><a
+														href="#managing_longitudinal_exposure" data-toggle="collapse">
+														<span class="badge badge-dark badge-pill">Abstract</span></a>
+												</li>
+												<li class="list-inline-item resume-degree-org"><a
+														href="http://rdcu.be/ARJP" target="_blank">
+														<span class="badge badge-info badge-pill">Link</span></a>
+												</li>
 
-        var config = {
-            type: 'line',
-            data: {
-                labels: data.timeserie['EUA'].days_since_first_infection,
-                datasets: [{
-                    label: 'Brasil',
-                    backgroundColor: Samples.utils.transparentize(window.chartColors.red),
-                    borderColor: window.chartColors.red,
-                    fill: false,
-                    data: data.timeserie['Brasil'].confirmed.filter(v => v >= 100),
-                }, {
-                    label: 'Alemanha',
-                    ackgroundColor: Samples.utils.transparentize(window.chartColors.blue),
-                    borderColor: window.chartColors.blue,
-                    fill: false,
-                    data: data.timeserie['Alemanha'].confirmed.filter(v => v >= 100),
-                }, {
-                    label: 'EUA',
-                    ackgroundColor: Samples.utils.transparentize(window.chartColors.steel_blue),
-                    borderColor: window.chartColors.steel_blue,
-                    fill: false,
-                    data: data.timeserie['EUA'].confirmed.filter(v => v >= 100),
-                }, {
-                    label: 'França',
-                    ackgroundColor: Samples.utils.transparentize(window.chartColors.green),
-                    borderColor: window.chartColors.green,
-                    fill: false,
-                    data: data.timeserie['França'].confirmed.filter(v => v >= 100),
-                }, {
-                    label: 'Portugal',
-                    ackgroundColor: Samples.utils.transparentize(window.chartColors.yellow),
-                    borderColor: window.chartColors.yellow,
-                    fill: false,
-                    data: data.timeserie['Portugal'].confirmed.filter(v => v >= 100),
-                }, {
-                    label: 'Itália',
-                    ackgroundColor: Samples.utils.transparentize(window.chartColors.purple),
-                    borderColor: window.chartColors.purple,
-                    fill: false,
-                    data: data.timeserie['Itália'].confirmed.filter(v => v >= 100),
-                }, {
-                    label: 'Espanha',
-                    ackgroundColor: Samples.utils.transparentize(window.chartColors.orange),
-                    borderColor: window.chartColors.orange,
-                    fill: false,
-                    data: data.timeserie['Espanha'].confirmed.filter(v => v >= 100),
-                }, {
-                    label: 'China',
-                    ackgroundColor: Samples.utils.transparentize(window.chartColors.chocolate),
-                    borderColor: window.chartColors.chocolate,
-                    fill: false,
-                    data: data.timeserie['China'].confirmed.filter(v => v >= 100),
-                }]
-            },
-            options: {
-                responsive: true,
-                title: {
-                    display: true,
-                    text: 'Distribuição do número de casos confirmados a partir dos primeiros 100 (cem) casos confirmados reportados'
-                },
-                scales: {
-                    xAxes: [{
-                        display: true,
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Número de dias desde os primeiros 100 (cem) casos confirmados reportados',
-                            fontSize: 18,
-                        },
-                    }],
-                    yAxes: [{
-                        display: true,
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Número oficial de casos (log)',
-                            fontSize: 18,
-                        },
+												<li class="list-inline-item resume-degree-org"><a
+														href="http://twitter-app.mpi-sws.org/footprint" target="_blank">
+														<span class="badge badge-primary badge-pill">System</span>
+													</a></li>
 
-                        type: 'logarithmic',
+											</ul>
+											</li>
+											<div id="managing_longitudinal_exposure" class="collapse">
+												<p class="font-italic"><b>Abstract:</b> On most online social media
+													sites today, user-generated data remains accessible to allowed
+													viewers unless and until the data owner changes her privacy
+													preferences. In this paper, we present a large-scale
+													measurement study focused on understanding how users control the
+													longitudinal exposure of their publicly
+													shared data on social media sites. Our study, using data from
+													Twitter, finds that a significant fraction
+													of users withdraw a surprisingly large percentage of old publicly
+													shared data—more than 28% of 6-year old
+													public posts (tweets) on Twitter are not accessible today. The
+													inaccessible tweets are either selectively
+													deleted by users or withdrawn by users when they delete or make
+													their accounts private. We also found a
+													significant problem with the current exposure control
+													mechanisms—even when a user deletes her tweets or
+													her account, the current mechanisms leave traces of residual
+													activity, i.e., tweets from other users sent
+													as replies to those deleted tweets or accounts still remain
+													accessible. We show that using this residual
+													information one can recover significant information about the
+													deleted tweets or even characteristics of
+													the deleted accounts. To the best of our knowledge, we are the first
+													to study the information leakage resulting
+													from residual activities of deleted tweets and accounts. Finally, we
+													propose two exposure control mechanisms
+													that eliminates information leakage via residual activities. One of
+													our mechanisms optimize for allowing
+													meaningful social interactions with user posts and another mechanism
+													aims to control longitudinal exposure
+													via anonymization . We discuss the merits and drawbacks of our
+													proposed mechanisms compared to existing
+													mechanisms.</p>
+											</div>
+										</ul>
 
-                        ticks: {
-                            userCallback: function (tick) {
-                                return tick.toLocaleString()
-                            },
-                            maxTicksLimit: 15,
-                            //sampleSize: 15,
-                        },
-                    }]
-                }
-            }
-        };
+										<ul class="list-inline">
+											<li>
+												<h6 class="resume-timeline-item-desc-heading font-weight-bold">An
+													Evaluation of Sentiment Analysis for Mobile Devices</h6>
+											<li>
+												<script>document.write(get_authors(["johnnatan_messias", "joao_p_diniz", "elias_soares", "miller_ferreira", "matheus_araujo", "lucas_bastos", "manoel_miranda", "fabricio_benevenuto"]))</script>
+											</li>
+											<li>In Springer Nature Social Network Analysis and Mining. Volume 7, Issue
+												1, 2017.</li>
 
-        var config_deaths = {
-            type: 'line',
-            data: {
-                labels: data.timeserie['EUA'].days_since_first_infection,
-                datasets: [{
-                    label: 'Brasil',
-                    backgroundColor: Samples.utils.transparentize(window.chartColors.red),
-                    borderColor: window.chartColors.red,
-                    fill: false,
-                    data: data.timeserie['Brasil'].deaths.filter(v => v >= 10),
-                }, {
-                    label: 'Alemanha',
-                    ackgroundColor: Samples.utils.transparentize(window.chartColors.blue),
-                    borderColor: window.chartColors.blue,
-                    fill: false,
-                    data: data.timeserie['Alemanha'].deaths.filter(v => v >= 10),
-                }, {
-                    label: 'EUA',
-                    ackgroundColor: Samples.utils.transparentize(window.chartColors.steel_blue),
-                    borderColor: window.chartColors.steel_blue,
-                    fill: false,
-                    data: data.timeserie['EUA'].deaths.filter(v => v >= 10),
-                }, {
-                    label: 'França',
-                    ackgroundColor: Samples.utils.transparentize(window.chartColors.green),
-                    borderColor: window.chartColors.green,
-                    fill: false,
-                    data: data.timeserie['França'].deaths.filter(v => v >= 10),
-                }, {
-                    label: 'Portugal',
-                    ackgroundColor: Samples.utils.transparentize(window.chartColors.yellow),
-                    borderColor: window.chartColors.yellow,
-                    fill: false,
-                    data: data.timeserie['Portugal'].deaths.filter(v => v >= 10),
-                }, {
-                    label: 'Itália',
-                    ackgroundColor: Samples.utils.transparentize(window.chartColors.purple),
-                    borderColor: window.chartColors.purple,
-                    fill: false,
-                    data: data.timeserie['Itália'].deaths.filter(v => v >= 10),
-                }, {
-                    label: 'Espanha',
-                    ackgroundColor: Samples.utils.transparentize(window.chartColors.orange),
-                    borderColor: window.chartColors.orange,
-                    fill: false,
-                    data: data.timeserie['Espanha'].deaths.filter(v => v >= 10),
-                }, {
-                    label: 'China',
-                    ackgroundColor: Samples.utils.transparentize(window.chartColors.chocolate),
-                    borderColor: window.chartColors.chocolate,
-                    fill: false,
-                    data: data.timeserie['China'].deaths.filter(v => v >= 10),
-                }]
-            },
-            options: {
-                responsive: true,
-                title: {
-                    display: true,
-                    text: 'Distribuição do número de óbitos a partir dos primeiros 10 (dez) casos de óbitos reportados'
-                },
-                scales: {
-                    xAxes: [{
-                        display: true,
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Número de dias desde os primeiros 10 (dez) óbitos reportados',
-                            fontSize: 18,
-                        },
-                    }],
-                    yAxes: [{
-                        display: true,
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Número oficial de óbtios (log)',
-                            fontSize: 18,
-                        },
-
-                        type: 'logarithmic',
-
-                        ticks: {
-                            userCallback: function (tick) {
-                                return tick.toLocaleString()
-                            },
-                            maxTicksLimit: 15,
-                        },
-                    }]
-                }
-            }
-        };
-
-        function createConfig(country) {
-            return {
-                type: 'line',
-                data: {
-                    labels: data.timeserie[country]['date'],
-                    datasets: [{
-                        label: 'Confirmados',
-                        backgroundColor: window.chartColors.blue,
-                        borderColor: window.chartColors.blue,
-                        data: data.timeserie[country]['confirmed'],
-                        fill: false,
-                    }, {
-                        label: 'Recuperados',
-                        fill: false,
-                        backgroundColor: window.chartColors.green,
-                        borderColor: window.chartColors.green,
-                        data: data.timeserie[country]['recovered'],
-                    }, {
-                        label: 'Óbitos',
-                        fill: false,
-                        backgroundColor: window.chartColors.red,
-                        borderColor: window.chartColors.red,
-                        data: data.timeserie[country]['deaths'],
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    title: {
-                        display: true,
-                        text: country
-                    },
-                    scales: {
-                        xAxes: [{
-                            gridLines: {
-                                display: true,
-                                drawBorder: true,
-                                drawOnChartArea: true,
-                                drawTicks: true,
-                            }
-                        }],
-                        yAxes: [{
-                            gridLines: {
-                                display: true,
-                                drawBorder: true,
-                                drawOnChartArea: true,
-                                drawTicks: true,
-                            },
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'Número oficial de casos',
-                                fontSize: 14,
-                            },
-                            ticks: {
-                                userCallback: function (tick) {
-                                    return tick.toLocaleString()
-                                },
-                                min: 0,
-                            }
-                        }],
-                    }
-                }
-            };
-        }
-
-        var barChartData = {
-            labels: data.fraction['country'],
-            datasets: [{
-                label: 'Ativos',
-                backgroundColor: window.chartColors.blue,
-                stack: 'Stack 0',
-                data: data.fraction.active_frac
-            }, {
-                label: 'Recuperados',
-                backgroundColor: window.chartColors.green,
-                stack: 'Stack 0',
-                data: data.fraction.recovered_frac
-            }, {
-                label: 'Óbitos',
-                backgroundColor: window.chartColors.red,
-                stack: 'Stack 0',
-                data: data.fraction.deaths_frac
-            }]
-
-        };
-
-        var conf_bar = {
-            type: 'line',
-            data: barChartData,
-            options: {
-                title: {
-                    display: true,
-                    text: 'Proporção de casos dos 30 países mais afetados'
-                },
-                tooltips: {
-                    mode: 'index',
-                    intersect: false
-                },
-                responsive: true,
-                scales: {
-                    xAxes: [{
-                        stacked: true,
-                        ticks: {
-                            min: 0,
-                            max: 100
-                        }
-                    }],
-                    yAxes: [{
-                        stacked: true,
-                        ticks: {
-                            min: 0,
-                            max: 100
-                        },
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Proporção (%)',
-                            fontSize: 18,
-                        }
-                    }]
-                }
-            }
-        }
-
-        var color = Chart.helpers.color;
-        function get_confirmed_per_deaths_data(country) {
-            var axis = [];
-            n = data.timeserie[country].lenght
-            axis.push({
-                x: data.stats[country].confirmed,
-                y: data.stats[country].deaths,
-            });
-            return axis;
-        }
-        var scatter_labels = []
-        var datasets = []
-        var axis = []
-        for (var country in data.stats) {
-            if (data.stats[country].deaths < 10) {
-                continue
-            }
-            scatter_labels.push(country)
-            axis.push({
-                x: data.stats[country].confirmed,
-                y: data.stats[country].deaths,
-            })
-
-        }
-        datasets.push({
-            borderColor: window.chartColors.red,
-            backgroundColor: color(window.chartColors.red).alpha(0.2).rgbString(),
-            pointHoverRadius: 10,
-            pointRadius: 5,
-            data: axis
-        })
-
-        var scatterChartData = {
-            datasets: datasets,
-            labels: scatter_labels
-        };
-
-        conf_scatter = {
-            type: 'scatter',
-            data: scatterChartData,
-            options: {
-                legend: {
-                    display: false,
-                }, title: {
-                    display: false,
-                }, scales: {
-                    xAxes: [{
-                        display: true,
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Número de casos confirmados reportados (log)',
-                            fontSize: 18,
-                        }, ticks: {
-                            userCallback: function (tick) {
-                                return tick.toLocaleString()
-                            },
-                            maxTicksLimit: 15,
-                        }, type: 'logarithmic',
-                    }],
-                    yAxes: [{
-                        display: true,
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Número de casos de óbitos reportados (log)',
-                            fontSize: 18,
-                        },
-
-                        type: 'logarithmic',
-
-                        ticks: {
-                            userCallback: function (tick) {
-                                return tick.toLocaleString()
-                            },
-                            maxTicksLimit: 15,
-                        },
-                    }]
-                }, tooltips: {
-                    mode: 'index',
-                    callbacks: {
-                        label: function (tooltipItem, data) {
-                            var tooltip = []
-                            tooltip.push('Confirmados: ' + tooltipItem.xLabel.toLocaleString())
-                            tooltip.push('Óbitos: ' + tooltipItem.yLabel.toLocaleString())
-                            return tooltip
-                        }, title: function (tooltipItem, data) {
-                            return data.labels[tooltipItem[0].index];
-                        }
-                    }
-                }
-            }
-        }
+											<ul class="list-inline">
+												<li class="list-inline-item"><a href="#mobile_snam"
+														data-toggle="collapse">
+														<span class="badge badge-dark badge-pill">Abstract</span></a>
+												</li>
+												<li class="list-inline-item"><a href="http://rdcu.be/rZtC"
+														target="_blank">
+														<span class="badge badge-info badge-pill">Link</span></a>
+												</li>
+												<li class="list-inline-item"><a
+														href="bibtex/messias_mobile_snam2017.bib" target="_blank">
+														<span class="badge badge-secondary badge-pill">BibTeX</span></a>
+												</li>
+											</ul>
+											</li>
+											<div id="mobile_snam" class="collapse">
+												<p class="font-italic"><b>Abstract:</b> Sentiment Analysis has become a
+													key tool to extract knowledge from data containing opinions
+													and sentiments, particularly, data from online social systems. With
+													the increasing use of smartphones to
+													access social media platforms, a new wave of applications that
+													explore sentiment analysis in the mobile
+													environment is beginning to emerge. However, there are various
+													existing sentiment analysis methods and
+													it is unclear which of them are deployable in the mobile
+													environment. In this paper, we provide the first
+													of a kind study in which we compare the performance of 14
+													sentence-level sentiment analysis methods in
+													the mobile environment. To do that, we adapted these methods to run
+													on Android OS and then we measure their
+													performance in terms of memory, CPU, and battery consumption. Our
+													findings unveil methods that require
+													almost no adaptations and run relatively fast as well as methods
+													that could not be deployed due to excessive
+													use of memory. We hope our effort provides a guide to developers and
+													researchers interested in exploring
+													sentiment analysis as part of a mobile application and can help new
+													applications to be executed without
+													the dependency of a server-side API. We also share the Android API
+													that implements all the 14 sentiment
+													analysis used in this paper.</p>
+											</div>
+										</ul>
 
 
+										<ul class="list-inline">
+											<li>
+												<h6 class="resume-timeline-item-desc-heading font-weight-bold">
+													Longitudinal Privacy Management in Social Media: The Need for Better
+													Controls</h6>
+											<li>
+												<script>document.write(get_authors(["mainack_mondal", "johnnatan_messias", "saptarshi_ghosh", "krishna_gummadi", "aniket_kate"]))</script>
+											</li>
+											<li>IEEE Internet Computing (Special Issue on Usable Privacy & Security).
+												Volume 21, Issue 3, May-June, 2017.</li>
+
+											<ul class="list-inline">
+												<li class="list-inline-item"><a href="#longitudinal_privacy"
+														data-toggle="collapse">
+														<span class="badge badge-dark badge-pill">Abstract</span></a>
+												</li>
+												<li class="list-inline-item"><a
+														href="http://ieeexplore.ieee.org/document/7927870/"
+														target="_blank">
+														<span class="badge badge-info badge-pill">Link</span></a>
+												</li>
+												<li class="list-inline-item"><a href="bibtex/mondal_ic_2017.bib"
+														target="_blank">
+														<span class="badge badge-secondary badge-pill">BibTeX</span></a>
+												</li>
+												<li class="list-inline-item resume-degree-org"><a
+														href="http://twitter-app.mpi-sws.org/footprint/"
+														target="_blank">
+														<span class="badge badge-primary badge-pill">System</span>
+													</a></li>
+											</ul>
+											</li>
+											<div id="longitudinal_privacy" class="collapse">
+												<p class="font-italic"><b>Abstract:</b> This large-scale measurement
+													study of Twitter focuses on understanding how users control
+													the longitudinal exposure of their publicly shared social data —
+													that is, their tweets — and the limitations
+													of currently used control mechanisms. Our study finds that, while
+													Twitter users widely employ longitudinal
+													exposure control mechanisms, they face two fundamental problems.
+													First, even when users delete their data
+													or account, the current mechanisms leave signficant traces of
+													residual activity. Second, these mechanisms
+													single out withdrawn tweets or accounts, attracting undesirable
+													attention to them. To address both problems,
+													an inactivity- based withdrawal scheme for improved longitudinal
+													exposure control is explored.</p>
+											</div>
+										</ul>
+
+										<ul class="list-inline">
+											<li>
+												<h6 class="resume-timeline-item-desc-heading font-weight-bold">
+													You followed my bot! Transforming robots into influential users in
+													Twitter</h6>
+											<li>
+												<script>document.write(get_authors(["johnnatan_messias", "lucas_schmidt", "ricardo_rabelo", "fabricio_benevenuto"]))</script>
+											</li>
+											<li>First Monday. Volume 18, Issue 7, July, 2013.</li>
+
+											<ul class="list-inline">
+												<li class="list-inline-item"><a href="#bot_scarina"
+														data-toggle="collapse">
+														<span class="badge badge-dark badge-pill">Abstract</span></a>
+												</li>
+												<li class="list-inline-item"><a
+														href="https://firstmonday.org/ojs/index.php/fm/article/view/4217"
+														target="_blank">
+														<span class="badge badge-info badge-pill">Link</span></a>
+												</li>
+												<li class="list-inline-item"><a
+														href="bibtex/messias_bot_firstmonday2013.bib" target="_blank">
+														<span class="badge badge-secondary badge-pill">BibTeX</span></a>
+												</li>
+
+											</ul>
+											</li>
+											<div id="bot_scarina" class="collapse">
+												<p class="font-italic"><b>Abstract:</b> Systems like Klout and
+													Twitalyzer were developed as an attempt to measure the influence of
+													users within social networks. Although the algorithms used by these
+													systems are not public known, they
+													have been widely used to rank users according to their influence,
+													especially in the Twitter social network.
+													As media companies might base their viral marketing campaigns on
+													influence scores, users might attempt
+													to boost their influence scores with simple mechanisms like
+													following unknown users to be followed back
+													or even interacting with those who reciprocate these actions. In
+													this paper, we investigate if widely used
+													influence scores are vulnerable and easy to manipulate. Our approach
+													consists of developing Twitter bot
+													accounts able to interact with real users to verify strategies that
+													can increase their influence scores
+													according to different systems. Our results show that it is possible
+													to become influential using very simple
+													strategies, suggesting that these systems should review their
+													influence score algorithms to avoid accounting
+													with automatic activity.</p>
+											</div>
+										</ul>
+
+									</article>
+									<article class="resume-timeline-item position-relative pb-5">
+
+										<div class="resume-timeline-item-header mb-2">
+											<div class="d-flex flex-column flex-md-row">
+												<h5 class="resume-timeline-item-header font-weight-bold mb-1">
+													Conferences
+												</h5>
+											</div>
+											<!--//row-->
+										</div>
+										<!--//resume-timeline-item-header-->
+										<ul class="list-inline">
+											<li>
+												<h6 class="resume-timeline-item-desc-heading font-weight-bold">Search
+													Bias Quantification: Investigating Political Bias in Social
+													Media
+													and Web Search</h6>
+											<li>
+												<script>document.write(get_authors(["juhi_kulshrestha", "motahhare_eslami", "johnnatan_messias", "bilal_zafar", "saptarshi_ghosh", "krishna_gummadi", "karrie_karahalios"]))</script>
+											</li>
+											<li>Information Retrieval Journal. Springer. Volume 22, Issue 1-2,
+												April 2019</li>
+
+											<ul class="list-inline">
+												<li class="list-inline-item"><a href="#political_leaning_journal"
+														data-toggle="collapse">
+														<span class="badge badge-dark badge-pill">Abstract</span></a>
+												</li>
+												<li class="list-inline-item"><a href="https://t.co/RaTVDuUiMG"
+														target="_blank">
+														<span class="badge badge-info badge-pill">Link</span></a>
+												</li>
+												<li class="list-inline-item"><a
+														href="bibtex/kulshrestha_political_it2017.bib" target="_blank">
+														<span class="badge badge-secondary badge-pill">BibTeX</span></a>
+												</li>
+												<li class="list-inline-item"><a
+														href="https://twitter-app.mpi-sws.org/search-bias-split-view/"
+														target="_blank">
+														<span class="badge badge-primary badge-pill">System
+															1</span>
+													</a></li>
+												<li class="list-inline-item"><a
+														href="http://twitter-app.mpi-sws.org/search-political-bias-of-users/"
+														target="_blank">
+														<span class="badge badge-primary badge-pill">System
+															2</span>
+													</a></li>
+
+											</ul>
+											</li>
+											<div id="political_leaning_journal" class="collapse">
+												<p class="font-italic"><b>Abstract:</b> Users frequently use search
+													systems on the
+													Web as well
+													as online social media to learn about
+													ongoing events and public opinion on personalities. Prior studies
+													have shown that the top-ranked results returned by these search
+													engines can shape user
+													opinion about the topic
+													(e.g., event or person) being searched. In case of polarizing topics
+													like politics,
+													where multiple competing perspectives exist, the political bias in
+													the
+													top search results
+													can play a significant role in shaping public opinion towards (or
+													away
+													from) certain perspectives.
+													Given the considerable impact that search bias can have on the user,
+													we
+													propose a generalizable
+													search bias quantification framework that not only measures the
+													political bias in ranked list
+													output by the search system but also decouples the bias introduced
+													by
+													the different
+													sources — input data and ranking system. We apply our framework to
+													study
+													the political
+													bias in searches related to 2016 US Presidential primaries in
+													Twitter
+													social media search
+													and find that both input data and ranking system matter in
+													determining
+													the final search
+													output bias seen by the users. And finally, we use the framework to
+													compare the relative bias
+													for two popular search systems — Twitter social media search and
+													Google
+													web search — for queries
+													related to politicians and political events. We end by discussing
+													some
+													potential solutions to
+													signal the bias in the search results to make the users more aware
+													of
+													them.</p>
+											</div>
+										</ul>
+
+									</article>
+									<!--//resume-timeline-item-->
+
+								</div>
+								<!--//resume-timeline-->
+
+						</section>
+						<!--//publication-section-->
+						<section class="resume-section experience-section mb-5">
+							<h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">Work Experience
+							</h2>
+							<div class="resume-section-content">
+								<div class="resume-timeline position-relative">
+									<article class="resume-timeline-item position-relative pb-5">
+
+										<div class="resume-timeline-item-header mb-2">
+											<div class="d-flex flex-column flex-md-row">
+												<h3 class="resume-position-title font-weight-bold mb-1">Data Scientist
+													and Full Stack Software Engineer
+												</h3>
+												<div class="resume-company-name ml-auto"><a
+														href="https://kunumi.com">Startup Kunumi</a></div>
+											</div>
+											<!--//row-->
+											<div class="resume-position-time">2017 - 2018</div>
+										</div>
+										<!--//resume-timeline-item-header-->
+										<div class="resume-timeline-item-desc">
+											<p>I worked on machine learning projects for risk and loan default
+												prediction and on health insurance characterization and forecasting.</p>
+											<h4 class="resume-timeline-item-desc-heading font-weight-bold">Technologies
+												used:</h4>
+											<ul class="list-inline">
+												<li class="list-inline-item"><span
+														class="badge badge-primary badge-pill">Python</span></li>
+												<li class="list-inline-item"><span
+														class="badge badge-primary badge-pill">Scikit-learn</span></li>
+												<li class="list-inline-item"><span
+														class="badge badge-primary badge-pill">Pandas</span></li>
+												<li class="list-inline-item"><span
+														class="badge badge-primary badge-pill">XGBoost</span></li>
+												<li class="list-inline-item"><span
+														class="badge badge-primary badge-pill">Others</span></li>
+											</ul>
+										</div>
+										<!--//resume-timeline-item-desc-->
+
+									</article>
+									<!--//resume-timeline-item-->
+
+								</div>
+								<!--//resume-timeline-->
+
+							</div>
+						</section>
+
+						<section class="resume-section experience-section mb-5">
+							<h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">Systems Developed
+							</h2>
+							<div class="resume-section-content">
+								<div class="resume-timeline position-relative">
+									<article class="resume-timeline-item position-relative pb-5">
+
+										<div class="resume-timeline-item-header mb-2">
+											<div class="d-flex flex-column flex-md-row">
+												<h3 class="resume-position-title font-weight-bold mb-1">Data Scientist
+													and Full Stack Software Engineer
+												</h3>
+												<div class="resume-company-name ml-auto"><a
+														href="https://kunumi.com">Startup Kunumi</a></div>
+											</div>
+											<!--//row-->
+											<div class="resume-position-time">2017 - 2018</div>
+										</div>
+										<!--//resume-timeline-item-header-->
+										<div class="resume-timeline-item-desc">
+											<p>I worked on machine learning projects for risk and loan default
+												prediction and on health insurance characterization and forecasting.</p>
+											<h4 class="resume-timeline-item-desc-heading font-weight-bold">Technologies
+												used:</h4>
+											<ul class="list-inline">
+												<li class="list-inline-item"><span
+														class="badge badge-primary badge-pill">Python</span></li>
+												<li class="list-inline-item"><span
+														class="badge badge-primary badge-pill">Scikit-learn</span></li>
+												<li class="list-inline-item"><span
+														class="badge badge-primary badge-pill">Pandas</span></li>
+												<li class="list-inline-item"><span
+														class="badge badge-primary badge-pill">XGBoost</span></li>
+												<li class="list-inline-item"><span
+														class="badge badge-primary badge-pill">Others</span></li>
+											</ul>
+										</div>
+										<!--//resume-timeline-item-desc-->
+
+									</article>
+									<!--//resume-timeline-item-->
+
+								</div>
+								<!--//resume-timeline-->
+
+							</div>
+						</section>
+						<!--//experience-section-->
+					</div>
+					<div class="col-lg-3">
+						<section class="resume-section interests-section mb-5">
+							<h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">Interests</h2>
+							<div class="resume-section-content">
+								<ul class="list-unstyled">
+									<li class="mb-1">Blockchains</li>
+									<li class="mb-1">Data Analysis</li>
+									<li class="mb-1">Social Networks</li>
+								</ul>
+							</div>
+						</section>
+						<section class="resume-section education-section mb-5">
+							<h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">Education</h2>
+							<div class="resume-section-content">
+								<ul class="list-unstyled">
+									<li class="mb-2">
+										<div class="resume-degree font-weight-bold">MSc in Computer Science</div>
+										<div class="resume-degree-org"><a href="https://ufmg.br">Universidade Federal de
+												Minas Gerais (UFMG)</a></div>
+										<div class="resume-degree-time">2015 - 2017</div>
+									</li>
+									<li>
+										<div class="resume-degree font-weight-bold">Student Exchange</div>
+										<div class="resume-degree-org"><a href="https://www.elte.hu/en/">Eötvös
+												Loránd University (ELTE)</a></div>
+										<div class="resume-degree-time">2013 - 2014</div>
+									</li>
+									<li>
+										<div class="resume-degree font-weight-bold">BSc in Computer Science</div>
+										<div class="resume-degree-org"><a href="https://ufop.br">Universidade Federal de
+												Ouro Preto (UFOP)</a></div>
+										<div class="resume-degree-time">2009 - 2014</div>
+									</li>
+								</ul>
+							</div>
+						</section>
+						<!--//interests-section-->
+						<!--//education-section-->
+						<section class="resume-section reference-section mb-5">
+							<h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">Awards</h2>
+							<div class="resume-section-content">
+								<ul class="list-unstyled resume-awards-list">
+									<li class="mb-2 pl-4 position-relative">
+										<i class="resume-award-icon fas fa-trophy position-absolute"
+											data-fa-transform="shrink-2"></i>
+										<div class="resume-award-name">Award Name Lorem</div>
+										<div class="resume-award-desc">Award desc goes here, ultricies nec, pellentesque
+											eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo.
+										</div>
+									</li>
+									<li class="mb-0 pl-4 position-relative">
+										<i class="resume-award-icon fas fa-trophy position-absolute"
+											data-fa-transform="shrink-2"></i>
+										<div class="resume-award-name">Award Name Ipsum</div>
+										<div class="resume-award-desc">Award desc goes here, ultricies nec,
+											pellentesque.</div>
+									</li>
+								</ul>
+							</div>
+						</section>
+						<!--//interests-section-->
+						<section class="resume-section language-section mb-5">
+							<h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">Language</h2>
+							<div class="resume-section-content">
+								<ul class="list-unstyled resume-lang-list">
+									<li class="mb-2"><span class="resume-lang-name font-weight-bold">Portuguese</span>
+										<small class="text-muted font-weight-normal">(Native)</small></li>
+									<li class="mb-2 align-middle"><span
+											class="resume-lang-name font-weight-bold">English</span> <small
+											class="text-muted font-weight-normal">(Professional)</small></li>
+									<li><span class="resume-lang-name font-weight-bold">German</span> <small
+											class="text-muted font-weight-normal">(Basic)</small></li>
+								</ul>
+							</div>
+						</section>
+						<!--//language-section-->
+					</div>
+				</div>
+				<!--//row-->
+			</div>
+			<!--//resume-body-->
+
+
+		</div>
+	</article>
+
+
+	<footer class="footer text-center pt-2 pb-5">
+		<!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can buy the commercial license via our website: themes.3rdwavemedia.com */-->
+		<small class="copyright">Copyright © Johnnatan Messias, 2020. Design adapted from the HTML5 template by <a
+				href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a></small>
+	</footer>
 
 
 
-        window.onload = function () {
-            /*
-            if(!window.location.hash) {
-                window.location = window.location + '#loaded';
-                window.location.reload();
-            }
-            */
-            var ctx = document.getElementById('canvas-confirmed-per-deaths').getContext('2d');
-            window.myScatter = Chart.Scatter(ctx, conf_scatter)
-
-            var ctx = document.getElementById('canvas-days-since-fisrt-infection').getContext('2d');
-            window.myLine = new Chart(ctx, config);
-
-            var ctx = document.getElementById('canvas-days-since-fisrt-death').getContext('2d');
-            window.myLine = new Chart(ctx, config_deaths);
-
-            var canvas = document.createElement('canvas');
-            var row = document.getElementById('bar-plot');
-            row.classList.add('row');
-            col = document.createElement('div')
-            col.classList.add('col');
-            col.classList.add('chart-container-bar');
-            col.appendChild(canvas);
-            row.appendChild(col)
-
-            var ctx = canvas.getContext('2d');
-            window.myBar = new Chart(ctx, conf_bar);
-
-            var container = document.getElementById('charts-top-30');
-            var row = document.createElement('div');
-            row.classList.add('row');
-            var c = 1;
-
-            countries = data.fraction['country'].slice(0)
-            countries.splice(countries.indexOf('Brasil'), 1)
-            countries.unshift('Brasil')
-            countries.forEach(function (country) {
-                col = document.createElement('div')
-                col.classList.add('col');
-                col.classList.add('chart-container-main');
-                var canvas = document.createElement('canvas');
-                col.appendChild(canvas);
-                row.appendChild(col)
-                var ctx = canvas.getContext('2d');
-                var config = createConfig(country);
-                new Chart(ctx, config);
-
-                if (c % 2 == 0) {
-                    container.appendChild(row)
-                    row = document.createElement('div');
-                    row.classList.add('row');
-                }
-                c += 1
-            });
-            container.appendChild(row)
-        
-            var table_elem = document.getElementById("table-cases-per-country")
-        for (var country in data.timeserie) {
-            new_cases_class = ''
-            new_deaths_class = ''
-            new_recovered_cases_class = ''
-            n = data.timeserie[country]['active'].length
-            confirmed = data.timeserie[country]['confirmed'][n - 1]
-            new_confirmed_cases = confirmed - data.timeserie[country]['confirmed'][n - 2]
-            active = data.timeserie[country]['active'][n - 1]
-            recovered = data.timeserie[country]['recovered'][n - 1]
-            new_recovered_cases = recovered - data.timeserie[country]['recovered'][n - 2]
-            deaths = data.timeserie[country]['deaths'][n - 1]
-            new_death_cases = deaths - data.timeserie[country]['deaths'][n - 2]
-            first_reported_cases = data.timeserie[country]['date'][0]
-            if (new_confirmed_cases > 0)
-                new_cases_class = 'class="p-3 mb-2 bg-warning text-dark"'
-            if (new_recovered_cases > 0)
-                new_recovered_cases_class = 'class="p-3 mb-2 bg-success text-white"'
-            if (new_death_cases > 0)
-                new_deaths_class = 'class="p-3 mb-2 bg-danger text-white"'
-            elem = document.createElement('tr')
-            elem.innerHTML = '<th scope="row">' + country + '</th><td>' + confirmed.toLocaleString() + '</td><td ' + new_cases_class + '>+' + new_confirmed_cases.toLocaleString() + '</td><td>' + deaths.toLocaleString() + '</td><td ' + new_deaths_class + '>+' + new_death_cases.toLocaleString() + '</td><td>' + active.toLocaleString() + '</td><td>' + recovered.toLocaleString() + '</td><td ' + new_recovered_cases_class + '>+' + new_recovered_cases.toLocaleString() + '</td><td>' + first_reported_cases + '</td>'
-            table_elem.appendChild(elem)
-        }
-
-        
-        };
-
-    </script>
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-161526158-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-161526158-1');
-    </script>
 </body>
 
-<!-- Footer -->
-<footer>
-    <div class="row text-center inline">
-        <div class="col-sm">
-            <a href="http://johnnatan.me">http://johnnatan.me</a>
-        </div>
-        <div class="w-100"></div>
-        <div class="col-sm">
-            Aguardo o seu pull-request (open-source): <a href="https://github.com/johnnatan-messias/covid19/">GitHub</a>
-        </div>
-        <div class="w-100"></div>
-        <div class="col-sm">
-            <a href="https://github.com/CSSEGISandData/COVID-19">Fonte de dados</a>
-        </div>
-    </div>
 
-</footer>
-<!-- Footer -->
+<!--Global site tag(gtag.js) - Google Analytics-->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-162290164-1"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag() { dataLayer.push(arguments); }
+	gtag('js', new Date());
+
+	gtag('config', 'UA-162290164-1');
+</script>
+
 
 </html>
