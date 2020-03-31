@@ -1,14 +1,800 @@
-<!DOCTYPE HTML>                                                                 
-<html lang="en">                                                                
-    <head>                                                                      
-        <meta charset="utf-8">
-        <meta http-equiv="refresh" content="0;url=https://johnnatan-messias.github.io/covid19/" />       
-        <link rel="canonical" href="https://johnnatan-messias.github.io/covid19/" />   
-        <script data-ad-client="ca-pub-9807457463500719" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>                  
-    </head>                                                                                                                                                                   
-    <body>                                                                      
-        <h1>                                                                    
-            The page been moved to <a href="https://johnnatan-messias.github.io/covid19/">https://johnnatan-messias.github.io/covid19/</a>
-        </h1>                                                                   
-    </body>                                                                     
+<!doctype html>
+<html>
+
+<head>
+    <title>Dados sobre o Covid-19</title>
+    <meta charset="utf-8">
+    <meta name="description"
+        content="Atualização sobre os números de casos confirmados, reportados e óbitos decorrentes do corona vírus. Os gráficos são atualizados diariamente.">
+    <meta property="og:image" content="https://johnnatan-messias.github.io/covid19/images/preview.png">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1794">
+    <meta property="og:image:height" content="884">
+    <meta name="keywords"
+        content="corona, vírus, virus, pandemia, dados, brasil, mundo, johnnatan messias, ciência da computação, monitor, covid-19, covid, transparência, projeto">
+    <meta http-equiv="Cache-control" content="no-cache">
+        <script data-ad-client="ca-pub-9807457463500719" async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script src="./utils/js/chart.js/Chart.min.js"></script>
+    <script src="./utils/js/chart.js/utils.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <style>
+        canvas {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+
+        .chart-container-bar {
+            width: 500px;
+            margin-left: 40px;
+            margin-right: 40px;
+            margin-bottom: 40px;
+        }
+
+        .chart-container-main {
+            width: 900px;
+            margin-left: 40px;
+            margin-right: 40px;
+            margin-bottom: 40px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    </style>
+
+    <style type="text/css">
+        /* Chart.js */
+        @keyframes chartjs-render-animation {
+            from {
+                opacity: .99
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        .chartjs-render-monitor {
+            animation: chartjs-render-animation 1ms
+        }
+
+        .chartjs-size-monitor,
+        .chartjs-size-monitor-expand,
+        .chartjs-size-monitor-shrink {
+            position: absolute;
+            direction: ltr;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            pointer-events: none;
+            visibility: hidden;
+            z-index: -1
+        }
+
+        .chartjs-size-monitor-expand>div {
+            position: absolute;
+            width: 1000000px;
+            height: 1000000px;
+            left: 0;
+            top: 0
+        }
+
+        .chartjs-size-monitor-shrink>div {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            left: 0;
+            top: 0
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row text-center inline">
+            <div class="col-12">
+                <h1>Número de casos reportados</h1>
+            </div>
+            <div class="col-12">
+                <h6>Atualizado em <span id="update-datetime"></span></h6>
+            </div>
+            <div class="col-2">
+                <h4>Mundo</h4>
+                <h4><span id="confirmed-world"></span></h4>
+                <h6>Ativos: <span id="active-world"></span></h6>
+                <h6>Recuperados: <span id="recovered-world"></span></h6>
+                <h6>Óbitos: <span id="deaths-world"></span></h6>
+            </div>
+            <div class="col-2">
+                <h4>Brasil</h4>
+                <h4><span id="confirmed-brazil"></span></h4>
+                <h6>Ativos: <span id="active-brazil"></span></h6>
+                <h6>Recuperados: <span id="recovered-brazil"></span></h6>
+                <h6>Óbitos: <span id="deaths-brazil"></span></h6>
+            </div>
+            <div class="col-2">
+                <h4>EUA</h4>
+                <h4><span id="confirmed-united-states"></span></h4>
+                <h6>Ativos: <span id="active-united-states"></span></h6>
+                <h6>Recuperados: <span id="recovered-united-states"></span></h6>
+                <h6>Óbitos: <span id="deaths-united-states"></span></h6>
+            </div>
+            <div class="col-2">
+                <h4>Itália</h4>
+                <h4><span id="confirmed-italy"></span></h4>
+                <h6>Ativos: <span id="active-italy"></span></h6>
+                <h6>Recuperados: <span id="recovered-italy"></span></h6>
+                <h6>Óbitos: <span id="deaths-italy"></span></h6>
+            </div>
+            <div class="col-2">
+                <h4>Espanha</h4>
+                <h4><span id="confirmed-spain"></span></h4>
+                <h6>Ativos: <span id="active-spain"></span></h6>
+                <h6>Recuperados: <span id="recovered-spain"></span></h6>
+                <h6>Óbitos: <span id="deaths-spain"></span></h6>
+            </div>
+            <div class="col-2">
+                <h4>Alemanha</h4>
+                <h4><span id="confirmed-germany"></span></h4>
+                <h6>Ativos: <span id="active-germany"></span></h6>
+                <h6>Recuperados: <span id="recovered-germany"></span></h6>
+                <h6>Óbitos: <span id="deaths-germany"></span></h6>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-12">
+                <h2>Proporção de casos por país</h2>
+            </div>
+            <div class="col-12" id="bar-plot">
+            </div>
+        </div>
+        <div class="row text-center inline">
+            <div class="col-12">
+                <h2>Tabela dos números de casos por país</h2>
+            </div>
+            <div class="col-12">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">País</th>
+                            <th scope="col">Total de casos</th>
+                            <th scope="col">Novos casos</th>
+                            <th scope="col">Total de óbitos</th>
+                            <th scope="col">Novos casos de óbito</th>
+                            <th scope="col">Total de ativos</th>
+                            <th scope="col">Total de recuperados</th>
+                            <th scope="col">Novos recuperados</th>
+                            <th scope="col">Primeiro caso reportado</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-cases-per-country">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-12">
+                <h2>Número de casos confirmados reportados</h2>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-10">
+                <canvas id="canvas-days-since-fisrt-infection"></canvas>
+            </div>
+            <div class="col-1"></div>
+        </div>
+        </br>
+        <div class="row text-center">
+            <div class="col-12">
+                <h2>Número de óbitos reportados</h2>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-10">
+                <canvas id="canvas-days-since-fisrt-death"></canvas>
+            </div>
+            <div class="col-1"></div>
+        </div>
+        </br>
+        <div class="row text-center">
+            <div class="col-12">
+                <h2>Número de casos confirmados por óbitos em cada país</h2>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-10">
+                <canvas id="canvas-confirmed-per-deaths"></canvas>
+            </div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row text-center inline" id="charts-top-30">
+            <div class="col-12">
+                <h2>Número de casos por país</h2>
+            </div>
+            <div class="col-12">
+                <h6>O eixo y possui escala diferente em cada gráfico</h6>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+
+        var data = (function () {
+            var json = null;
+            $.ajax({
+                'async': false,
+                'global': false,
+                'url': "./data/data.json",
+                'dataType': "json",
+                'success': function (data) {
+                    json = data;
+                }
+            });
+            return json;
+        })();
+
+        var date = Date.parse(data.last_update + ".000Z");
+        date = new Date(date).toLocaleString()
+        document.getElementById("update-datetime").textContent = date
+
+        document.getElementById("confirmed-world").textContent = data.total['confirmed'].toLocaleString()
+        document.getElementById("active-world").textContent = data.total['active'].toLocaleString()
+        document.getElementById("recovered-world").textContent = data.total['recovered'].toLocaleString()
+        document.getElementById("deaths-world").textContent = data.total['deaths'].toLocaleString()
+
+        document.getElementById("confirmed-brazil").textContent = data.stats['Brasil']['confirmed'].toLocaleString()
+        document.getElementById("active-brazil").textContent = data.stats['Brasil']['active'].toLocaleString()
+        document.getElementById("recovered-brazil").textContent = data.stats['Brasil']['recovered'].toLocaleString()
+        document.getElementById("deaths-brazil").textContent = data.stats['Brasil']['deaths'].toLocaleString()
+
+        document.getElementById("confirmed-italy").textContent = data.stats['Itália']['confirmed'].toLocaleString()
+        document.getElementById("active-italy").textContent = data.stats['Itália']['active'].toLocaleString()
+        document.getElementById("recovered-italy").textContent = data.stats['Itália']['recovered'].toLocaleString()
+        document.getElementById("deaths-italy").textContent = data.stats['Itália']['deaths'].toLocaleString()
+
+        document.getElementById("confirmed-germany").textContent = data.stats['Alemanha']['confirmed'].toLocaleString()
+        document.getElementById("active-germany").textContent = data.stats['Alemanha']['active'].toLocaleString()
+        document.getElementById("recovered-germany").textContent = data.stats['Alemanha']['recovered'].toLocaleString()
+        document.getElementById("deaths-germany").textContent = data.stats['Alemanha']['deaths'].toLocaleString()
+
+        document.getElementById("confirmed-united-states").textContent = data.stats['EUA']['confirmed'].toLocaleString()
+        document.getElementById("active-united-states").textContent = data.stats['EUA']['active'].toLocaleString()
+        document.getElementById("recovered-united-states").textContent = data.stats['EUA']['recovered'].toLocaleString()
+        document.getElementById("deaths-united-states").textContent = data.stats['EUA']['deaths'].toLocaleString()
+
+        document.getElementById("confirmed-spain").textContent = data.stats['Espanha']['confirmed'].toLocaleString()
+        document.getElementById("active-spain").textContent = data.stats['Espanha']['active'].toLocaleString()
+        document.getElementById("recovered-spain").textContent = data.stats['Espanha']['recovered'].toLocaleString()
+        document.getElementById("deaths-spain").textContent = data.stats['Espanha']['deaths'].toLocaleString()
+
+        var config = {
+            type: 'line',
+            data: {
+                labels: data.timeserie['EUA'].days_since_first_infection,
+                datasets: [{
+                    label: 'Brasil',
+                    backgroundColor: Samples.utils.transparentize(window.chartColors.red),
+                    borderColor: window.chartColors.red,
+                    fill: false,
+                    data: data.timeserie['Brasil'].confirmed.filter(v => v >= 100),
+                }, {
+                    label: 'Alemanha',
+                    ackgroundColor: Samples.utils.transparentize(window.chartColors.blue),
+                    borderColor: window.chartColors.blue,
+                    fill: false,
+                    data: data.timeserie['Alemanha'].confirmed.filter(v => v >= 100),
+                }, {
+                    label: 'EUA',
+                    ackgroundColor: Samples.utils.transparentize(window.chartColors.steel_blue),
+                    borderColor: window.chartColors.steel_blue,
+                    fill: false,
+                    data: data.timeserie['EUA'].confirmed.filter(v => v >= 100),
+                }, {
+                    label: 'França',
+                    ackgroundColor: Samples.utils.transparentize(window.chartColors.green),
+                    borderColor: window.chartColors.green,
+                    fill: false,
+                    data: data.timeserie['França'].confirmed.filter(v => v >= 100),
+                }, {
+                    label: 'Portugal',
+                    ackgroundColor: Samples.utils.transparentize(window.chartColors.yellow),
+                    borderColor: window.chartColors.yellow,
+                    fill: false,
+                    data: data.timeserie['Portugal'].confirmed.filter(v => v >= 100),
+                }, {
+                    label: 'Itália',
+                    ackgroundColor: Samples.utils.transparentize(window.chartColors.purple),
+                    borderColor: window.chartColors.purple,
+                    fill: false,
+                    data: data.timeserie['Itália'].confirmed.filter(v => v >= 100),
+                }, {
+                    label: 'Espanha',
+                    ackgroundColor: Samples.utils.transparentize(window.chartColors.orange),
+                    borderColor: window.chartColors.orange,
+                    fill: false,
+                    data: data.timeserie['Espanha'].confirmed.filter(v => v >= 100),
+                }, {
+                    label: 'China',
+                    ackgroundColor: Samples.utils.transparentize(window.chartColors.chocolate),
+                    borderColor: window.chartColors.chocolate,
+                    fill: false,
+                    data: data.timeserie['China'].confirmed.filter(v => v >= 100),
+                }]
+            },
+            options: {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Distribuição do número de casos confirmados a partir dos primeiros 100 (cem) casos confirmados reportados'
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Número de dias desde os primeiros 100 (cem) casos confirmados reportados',
+                            fontSize: 18,
+                        },
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Número oficial de casos (log)',
+                            fontSize: 18,
+                        },
+
+                        type: 'logarithmic',
+
+                        ticks: {
+                            userCallback: function (tick) {
+                                return tick.toLocaleString()
+                            },
+                            maxTicksLimit: 15,
+                            //sampleSize: 15,
+                        },
+                    }]
+                }
+            }
+        };
+
+        var config_deaths = {
+            type: 'line',
+            data: {
+                labels: data.timeserie['EUA'].days_since_first_infection,
+                datasets: [{
+                    label: 'Brasil',
+                    backgroundColor: Samples.utils.transparentize(window.chartColors.red),
+                    borderColor: window.chartColors.red,
+                    fill: false,
+                    data: data.timeserie['Brasil'].deaths.filter(v => v >= 10),
+                }, {
+                    label: 'Alemanha',
+                    ackgroundColor: Samples.utils.transparentize(window.chartColors.blue),
+                    borderColor: window.chartColors.blue,
+                    fill: false,
+                    data: data.timeserie['Alemanha'].deaths.filter(v => v >= 10),
+                }, {
+                    label: 'EUA',
+                    ackgroundColor: Samples.utils.transparentize(window.chartColors.steel_blue),
+                    borderColor: window.chartColors.steel_blue,
+                    fill: false,
+                    data: data.timeserie['EUA'].deaths.filter(v => v >= 10),
+                }, {
+                    label: 'França',
+                    ackgroundColor: Samples.utils.transparentize(window.chartColors.green),
+                    borderColor: window.chartColors.green,
+                    fill: false,
+                    data: data.timeserie['França'].deaths.filter(v => v >= 10),
+                }, {
+                    label: 'Portugal',
+                    ackgroundColor: Samples.utils.transparentize(window.chartColors.yellow),
+                    borderColor: window.chartColors.yellow,
+                    fill: false,
+                    data: data.timeserie['Portugal'].deaths.filter(v => v >= 10),
+                }, {
+                    label: 'Itália',
+                    ackgroundColor: Samples.utils.transparentize(window.chartColors.purple),
+                    borderColor: window.chartColors.purple,
+                    fill: false,
+                    data: data.timeserie['Itália'].deaths.filter(v => v >= 10),
+                }, {
+                    label: 'Espanha',
+                    ackgroundColor: Samples.utils.transparentize(window.chartColors.orange),
+                    borderColor: window.chartColors.orange,
+                    fill: false,
+                    data: data.timeserie['Espanha'].deaths.filter(v => v >= 10),
+                }, {
+                    label: 'China',
+                    ackgroundColor: Samples.utils.transparentize(window.chartColors.chocolate),
+                    borderColor: window.chartColors.chocolate,
+                    fill: false,
+                    data: data.timeserie['China'].deaths.filter(v => v >= 10),
+                }]
+            },
+            options: {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Distribuição do número de óbitos a partir dos primeiros 10 (dez) casos de óbitos reportados'
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Número de dias desde os primeiros 10 (dez) óbitos reportados',
+                            fontSize: 18,
+                        },
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Número oficial de óbtios (log)',
+                            fontSize: 18,
+                        },
+
+                        type: 'logarithmic',
+
+                        ticks: {
+                            userCallback: function (tick) {
+                                return tick.toLocaleString()
+                            },
+                            maxTicksLimit: 15,
+                        },
+                    }]
+                }
+            }
+        };
+
+        function createConfig(country) {
+            return {
+                type: 'line',
+                data: {
+                    labels: data.timeserie[country]['date'],
+                    datasets: [{
+                        label: 'Confirmados',
+                        backgroundColor: window.chartColors.blue,
+                        borderColor: window.chartColors.blue,
+                        data: data.timeserie[country]['confirmed'],
+                        fill: false,
+                    }, {
+                        label: 'Recuperados',
+                        fill: false,
+                        backgroundColor: window.chartColors.green,
+                        borderColor: window.chartColors.green,
+                        data: data.timeserie[country]['recovered'],
+                    }, {
+                        label: 'Óbitos',
+                        fill: false,
+                        backgroundColor: window.chartColors.red,
+                        borderColor: window.chartColors.red,
+                        data: data.timeserie[country]['deaths'],
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    title: {
+                        display: true,
+                        text: country
+                    },
+                    scales: {
+                        xAxes: [{
+                            gridLines: {
+                                display: true,
+                                drawBorder: true,
+                                drawOnChartArea: true,
+                                drawTicks: true,
+                            }
+                        }],
+                        yAxes: [{
+                            gridLines: {
+                                display: true,
+                                drawBorder: true,
+                                drawOnChartArea: true,
+                                drawTicks: true,
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Número oficial de casos',
+                                fontSize: 14,
+                            },
+                            ticks: {
+                                userCallback: function (tick) {
+                                    return tick.toLocaleString()
+                                },
+                                min: 0,
+                            }
+                        }],
+                    }
+                }
+            };
+        }
+
+        var barChartData = {
+            labels: data.fraction['country'],
+            datasets: [{
+                label: 'Ativos',
+                backgroundColor: window.chartColors.blue,
+                stack: 'Stack 0',
+                data: data.fraction.active_frac
+            }, {
+                label: 'Recuperados',
+                backgroundColor: window.chartColors.green,
+                stack: 'Stack 0',
+                data: data.fraction.recovered_frac
+            }, {
+                label: 'Óbitos',
+                backgroundColor: window.chartColors.red,
+                stack: 'Stack 0',
+                data: data.fraction.deaths_frac
+            }]
+
+        };
+
+        var conf_bar = {
+            type: 'line',
+            data: barChartData,
+            options: {
+                title: {
+                    display: true,
+                    text: 'Proporção de casos dos 30 países mais afetados'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false
+                },
+                responsive: true,
+                scales: {
+                    xAxes: [{
+                        stacked: true,
+                        ticks: {
+                            min: 0,
+                            max: 100
+                        }
+                    }],
+                    yAxes: [{
+                        stacked: true,
+                        ticks: {
+                            min: 0,
+                            max: 100
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Proporção (%)',
+                            fontSize: 18,
+                        }
+                    }]
+                }
+            }
+        }
+
+        var color = Chart.helpers.color;
+        function get_confirmed_per_deaths_data(country) {
+            var axis = [];
+            n = data.timeserie[country].lenght
+            axis.push({
+                x: data.stats[country].confirmed,
+                y: data.stats[country].deaths,
+            });
+            return axis;
+        }
+        var scatter_labels = []
+        var datasets = []
+        var axis = []
+        for (var country in data.stats) {
+            if (data.stats[country].deaths < 10) {
+                continue
+            }
+            scatter_labels.push(country)
+            axis.push({
+                x: data.stats[country].confirmed,
+                y: data.stats[country].deaths,
+            })
+
+        }
+        datasets.push({
+            borderColor: window.chartColors.red,
+            backgroundColor: color(window.chartColors.red).alpha(0.2).rgbString(),
+            pointHoverRadius: 10,
+            pointRadius: 5,
+            data: axis
+        })
+
+        var scatterChartData = {
+            datasets: datasets,
+            labels: scatter_labels
+        };
+
+        conf_scatter = {
+            type: 'scatter',
+            data: scatterChartData,
+            options: {
+                legend: {
+                    display: false,
+                }, title: {
+                    display: false,
+                }, scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Número de casos confirmados reportados (log)',
+                            fontSize: 18,
+                        }, ticks: {
+                            userCallback: function (tick) {
+                                return tick.toLocaleString()
+                            },
+                            maxTicksLimit: 15,
+                        }, type: 'logarithmic',
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Número de casos de óbitos reportados (log)',
+                            fontSize: 18,
+                        },
+
+                        type: 'logarithmic',
+
+                        ticks: {
+                            userCallback: function (tick) {
+                                return tick.toLocaleString()
+                            },
+                            maxTicksLimit: 15,
+                        },
+                    }]
+                }, tooltips: {
+                    mode: 'index',
+                    callbacks: {
+                        label: function (tooltipItem, data) {
+                            var tooltip = []
+                            tooltip.push('Confirmados: ' + tooltipItem.xLabel.toLocaleString())
+                            tooltip.push('Óbitos: ' + tooltipItem.yLabel.toLocaleString())
+                            return tooltip
+                        }, title: function (tooltipItem, data) {
+                            return data.labels[tooltipItem[0].index];
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+
+
+        window.onload = function () {
+            /*
+            if(!window.location.hash) {
+                window.location = window.location + '#loaded';
+                window.location.reload();
+            }
+            */
+            var ctx = document.getElementById('canvas-confirmed-per-deaths').getContext('2d');
+            window.myScatter = Chart.Scatter(ctx, conf_scatter)
+
+            var ctx = document.getElementById('canvas-days-since-fisrt-infection').getContext('2d');
+            window.myLine = new Chart(ctx, config);
+
+            var ctx = document.getElementById('canvas-days-since-fisrt-death').getContext('2d');
+            window.myLine = new Chart(ctx, config_deaths);
+
+            var canvas = document.createElement('canvas');
+            var row = document.getElementById('bar-plot');
+            row.classList.add('row');
+            col = document.createElement('div')
+            col.classList.add('col');
+            col.classList.add('chart-container-bar');
+            col.appendChild(canvas);
+            row.appendChild(col)
+
+            var ctx = canvas.getContext('2d');
+            window.myBar = new Chart(ctx, conf_bar);
+
+            var container = document.getElementById('charts-top-30');
+            var row = document.createElement('div');
+            row.classList.add('row');
+            var c = 1;
+
+            countries = data.fraction['country'].slice(0)
+            countries.splice(countries.indexOf('Brasil'), 1)
+            countries.unshift('Brasil')
+            countries.forEach(function (country) {
+                col = document.createElement('div')
+                col.classList.add('col');
+                col.classList.add('chart-container-main');
+                var canvas = document.createElement('canvas');
+                col.appendChild(canvas);
+                row.appendChild(col)
+                var ctx = canvas.getContext('2d');
+                var config = createConfig(country);
+                new Chart(ctx, config);
+
+                if (c % 2 == 0) {
+                    container.appendChild(row)
+                    row = document.createElement('div');
+                    row.classList.add('row');
+                }
+                c += 1
+            });
+            container.appendChild(row)
+        
+            var table_elem = document.getElementById("table-cases-per-country")
+        for (var country in data.timeserie) {
+            new_cases_class = ''
+            new_deaths_class = ''
+            new_recovered_cases_class = ''
+            n = data.timeserie[country]['active'].length
+            confirmed = data.timeserie[country]['confirmed'][n - 1]
+            new_confirmed_cases = confirmed - data.timeserie[country]['confirmed'][n - 2]
+            active = data.timeserie[country]['active'][n - 1]
+            recovered = data.timeserie[country]['recovered'][n - 1]
+            new_recovered_cases = recovered - data.timeserie[country]['recovered'][n - 2]
+            deaths = data.timeserie[country]['deaths'][n - 1]
+            new_death_cases = deaths - data.timeserie[country]['deaths'][n - 2]
+            first_reported_cases = data.timeserie[country]['date'][0]
+            if (new_confirmed_cases > 0)
+                new_cases_class = 'class="p-3 mb-2 bg-warning text-dark"'
+            if (new_recovered_cases > 0)
+                new_recovered_cases_class = 'class="p-3 mb-2 bg-success text-white"'
+            if (new_death_cases > 0)
+                new_deaths_class = 'class="p-3 mb-2 bg-danger text-white"'
+            elem = document.createElement('tr')
+            elem.innerHTML = '<th scope="row">' + country + '</th><td>' + confirmed.toLocaleString() + '</td><td ' + new_cases_class + '>+' + new_confirmed_cases.toLocaleString() + '</td><td>' + deaths.toLocaleString() + '</td><td ' + new_deaths_class + '>+' + new_death_cases.toLocaleString() + '</td><td>' + active.toLocaleString() + '</td><td>' + recovered.toLocaleString() + '</td><td ' + new_recovered_cases_class + '>+' + new_recovered_cases.toLocaleString() + '</td><td>' + first_reported_cases + '</td>'
+            table_elem.appendChild(elem)
+        }
+
+        
+        };
+
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-161526158-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-161526158-1');
+    </script>
+</body>
+
+<!-- Footer -->
+<footer>
+    <div class="row text-center inline">
+        <div class="col-sm">
+            <a href="http://johnnatan.me">http://johnnatan.me</a>
+        </div>
+        <div class="w-100"></div>
+        <div class="col-sm">
+            Aguardo o seu pull-request (open-source): <a href="https://github.com/johnnatan-messias/covid19/">GitHub</a>
+        </div>
+        <div class="w-100"></div>
+        <div class="col-sm">
+            <a href="https://github.com/CSSEGISandData/COVID-19">Fonte de dados</a>
+        </div>
+    </div>
+
+</footer>
+<!-- Footer -->
+
 </html>
