@@ -96,6 +96,8 @@
 			"elissa_redmiles": ["Elissa M. Redmiles", "https://www.cs.umd.edu/~eredmiles/"],
 			"hugo_sousa": ["Hugo Sousa", "https://homepages.dcc.ufmg.br/~hugosousa/"],
 			"kiran_garimella": ["Kiran Garimella", "https://users.ics.aalto.fi/kiran/"],
+			"mohamed_alzayat": ["Mohamed Alzayat", "https://people.mpi-sws.org/~alzayat/"],
+			"balakrishnan_chandrasekaran": ["Balakrishnan Chandrasekaran", "https://balakrishnanc.github.io"],
 
 		};
 		function parse_author_to_html(author) {
@@ -541,6 +543,43 @@
 											<!--//row-->
 										</div>
 										<!--//resume-timeline-item-header-->
+										<ul class="list-inline">
+											<li>
+												<h6 class="resume-timeline-item-desc-heading font-weight-bold">
+													On Blockchain Commit Times: An analysis of how miners choose Bitcoin transactions</h6>
+											<li>
+												<script>document.write(get_authors(["johnnatan_messias", "mohamed_alzayat", "balakrishnan_chandrasekaran", "krishna_gummadi"]))</script>
+											</li>
+											<li>In Proceedings of the Second International Workshop on Smart Data for Blockchain and Distributed Ledger (SDBD'20)</li>
+
+											<ul class="list-inline">
+												<li class="list-inline-item"><a href="#sdbd-commit-times"
+														data-toggle="collapse">
+														<span class="badge badge-dark badge-pill">Abstract</span></a>
+												</li>
+												<li class="list-inline-item"><a href="pdf/messias-sdbd-20.pdf"
+														target="_blank">
+														<span class="badge badge-danger badge-pill">PDF</span></a>
+												</li>
+												<li class="list-inline-item"><a href="#"
+														target="_blank">
+														<span class="badge badge-secondary badge-pill">BibTeX</span></a>
+												</li>
+											</ul>
+											</li>
+											<div id="sdbd-commit-times" class="collapse">
+												<p class="font-italic"><b>Abstract:</b> Blockchains suffer from a well-known, non-trivial scalability problem: 
+													The low throughput (i.e., transactions committed per unit time) of blockchains when paired with the increasingly 
+													high volume of issued transactions leads to significant delays in transaction commit times. 
+													In a month-long investigation of Bitcoin, we reveal that congestion (i.e., when there exist more transactions than can be 
+													included in a block) is typical and that commit times exhibit a significant variance during periods of congestion. 
+													Although the fee-per-byte dequeuing policy is widely considered the "norm" for prioritizing transactions — and explaining how 
+													and when transactions are committed — we show that miners somehow delay a significant fraction of transactions. 
+													Such deviations undermine the utility of blockchains for ensuring a "fair" ordering that might be required for some applications.
+												</p>
+											</div>
+										</ul>
+
 										<ul class="list-inline">
 											<li>
 												<h6 class="resume-timeline-item-desc-heading font-weight-bold">
