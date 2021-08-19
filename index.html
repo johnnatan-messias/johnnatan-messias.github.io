@@ -98,6 +98,8 @@
 			"kiran_garimella": ["Kiran Garimella", "https://users.ics.aalto.fi/kiran/"],
 			"mohamed_alzayat": ["Mohamed Alzayat", "https://people.mpi-sws.org/~alzayat/"],
 			"balakrishnan_chandrasekaran": ["Balakrishnan Chandrasekaran", "https://balakrishnanc.github.io"],
+			"patrick_loiseau": ["Patrick Loiseau", "http://lig-membres.imag.fr/loiseapa/"],
+			"alan_mislove": ["Alan Mislove", "https://mislove.org"],
 
 		};
 		function parse_author_to_html(author) {
@@ -188,14 +190,18 @@
 							Federal de Ouro Preto (<a href="https://ufop.br">UFOP</a>), Brazil, in 2015.
 							<br>
 							<br>
-							I have also worked on machine learning projects for risk and loan default prediction and health 
-							insurance characterization and forecasting. One of the projects was awarded as the most innovative health 
-							software in Brazil in 2019, according to IT Forum 365, promoted by PwC and ITMidia. In 2018, 
-							I joined the "Eleições sem Fake" project to provide transparency along with the Brazilian elections and 
+							I have also worked on machine learning projects for risk and loan default prediction and
+							health
+							insurance characterization and forecasting. One of the projects was awarded as the most
+							innovative health
+							software in Brazil in 2019, according to IT Forum 365, promoted by PwC and ITMidia. In 2018,
+							I joined the "Eleições sem Fake" project to provide transparency along with the Brazilian
+							elections and
 							counter misinformation.
 							<br>
 							<br>
-							<u>My complete name</u>: Johnnatan Messias Peixoto Afonso.</p>
+							<u>My complete name</u>: Johnnatan Messias Peixoto Afonso.
+						</p>
 					</div>
 				</section>
 				<!--//summary-section-->
@@ -546,11 +552,56 @@
 										<ul class="list-inline">
 											<li>
 												<h6 class="resume-timeline-item-desc-heading font-weight-bold">
-													On Blockchain Commit Times: An analysis of how miners choose Bitcoin transactions</h6>
+													Selfish & Opaque Transaction Ordering in the Bitcoin Blockchain: The
+													Case for Chain Neutrality</h6>
+											<li>
+												<script>document.write(get_authors(["johnnatan_messias", "mohamed_alzayat", "balakrishnan_chandrasekaran", "krishna_gummadi", "patrick_loiseau", "alan_mislove"]))</script>
+											</li>
+											<li>In Proceedings of the ACM SIGCOMM Internet Measurement Conference (IMC
+												2021). Virtual Event. November, 2021. <font color="E7421F">To appear</font>.</li>
+
+											<ul class="list-inline">
+												<li class="list-inline-item"><a href="#imc-tx-prioritization"
+														data-toggle="collapse">
+														<span class="badge badge-dark badge-pill">Abstract</span></a>
+												</li>
+											</ul>
+											</li>
+											<div id="imc-tx-prioritization" class="collapse">
+												<p class="font-italic"><b>Abstract:</b> Most public blockchain
+													protocols, including the popular Bitcoin and Ethereum blockchains,
+													do not formally specify the order in which miners should select
+													transactions from the pool of pending (or uncommitted) transactions
+													for inclusion in the blockchain. However, over the years, informal
+													conventions or "norms" for transaction ordering have emerged via the
+													use of shared codebases by miners, e.g., the GetBlockTemplate (GBT)
+													mining protocol in Bitcoin. Today, a widely held view is that
+													Bitcoin miners prioritize transactions based on their offered
+													"transaction fee-per-byte." Consequently, Bitcoin users are
+													encouraged to offer higher fees to accelerate the commitment of
+													their transactions, particularly during periods of congestion. In
+													this paper, we audit the Bitcoin blockchain and present
+													statistically significant evidence of mining pools deviating from
+													the norm to accelerate the commitment of transactions for which they
+													(a) have a selfish or vested interest, or (b) have received dark-fee
+													payments via opaque (non-public) side-channels. As blockchains are
+													increasingly being used as a record-keeping substrate for a variety
+													of decentralized (financial technology) systems, our findings call
+													for an urgent discussion on defining neutrality norms that miners
+													need to adhere to when ordering transactions in the chains.
+												</p>
+											</div>
+										</ul>
+										<ul class="list-inline">
+											<li>
+												<h6 class="resume-timeline-item-desc-heading font-weight-bold">
+													On Blockchain Commit Times: An analysis of how miners choose Bitcoin
+													transactions</h6>
 											<li>
 												<script>document.write(get_authors(["johnnatan_messias", "mohamed_alzayat", "balakrishnan_chandrasekaran", "krishna_gummadi"]))</script>
 											</li>
-											<li>In Proceedings of the Second International KDD Workshop on Smart Data for Blockchain and Distributed Ledger (SDBD'20). August, 2020.</li>
+											<li>In Proceedings of the Second International KDD Workshop on Smart Data
+												for Blockchain and Distributed Ledger (SDBD'20). August, 2020.</li>
 
 											<ul class="list-inline">
 												<li class="list-inline-item"><a href="#sdbd-commit-times"
@@ -566,24 +617,32 @@
 														<span class="badge badge-secondary badge-pill">BibTeX</span></a>
 												</li>
 												<li class="list-inline-item"><a href="https://youtu.be/o_KZpNPJQiE"
-													target="_blank">
-													<span class="badge badge-warning badge-pill">Talk</span></a>
+														target="_blank">
+														<span class="badge badge-warning badge-pill">Talk</span></a>
 												</li>
 												<li class="list-inline-item"><a href="pdf/messias-sdbd-20-slides.pdf"
-													target="_blank">
-													<span class="badge badge-warning badge-pill">Slides</span></a>
+														target="_blank">
+														<span class="badge badge-warning badge-pill">Slides</span></a>
 												</li>
 											</ul>
 											</li>
 											<div id="sdbd-commit-times" class="collapse">
-												<p class="font-italic"><b>Abstract:</b> Blockchains suffer from a well-known, non-trivial scalability problem: 
-													The low throughput (i.e., transactions committed per unit time) of blockchains when paired with the increasingly 
-													high volume of issued transactions leads to significant delays in transaction commit times. 
-													In a month-long investigation of Bitcoin, we reveal that congestion (i.e., when there exist more transactions than can be 
-													included in a block) is typical and that commit times exhibit a significant variance during periods of congestion. 
-													Although the fee-per-byte dequeuing policy is widely considered the "norm" for prioritizing transactions — and explaining how 
-													and when transactions are committed — we show that miners somehow delay a significant fraction of transactions. 
-													Such deviations undermine the utility of blockchains for ensuring a "fair" ordering that might be required for some applications.
+												<p class="font-italic"><b>Abstract:</b> Blockchains suffer from a
+													well-known, non-trivial scalability problem:
+													The low throughput (i.e., transactions committed per unit time) of
+													blockchains when paired with the increasingly
+													high volume of issued transactions leads to significant delays in
+													transaction commit times.
+													In a month-long investigation of Bitcoin, we reveal that congestion
+													(i.e., when there exist more transactions than can be
+													included in a block) is typical and that commit times exhibit a
+													significant variance during periods of congestion.
+													Although the fee-per-byte dequeuing policy is widely considered the
+													"norm" for prioritizing transactions — and explaining how
+													and when transactions are committed — we show that miners somehow
+													delay a significant fraction of transactions.
+													Such deviations undermine the utility of blockchains for ensuring a
+													"fair" ordering that might be required for some applications.
 												</p>
 											</div>
 										</ul>
@@ -1351,11 +1410,13 @@
 								<li>MIT Technology Review:
 									<a href="https://www.technologyreview.com/s/608216/twitters-glass-ceiling-revealed-for-women-and-minority-races/"
 										target="_blank">Twitter's Glass Ceiling Revealed for Women and Minority
-										Races</a>.</li>
+										Races</a>.
+								</li>
 								<li>Nexo Jornal:
 									<a href="https://www.nexojornal.com.br/expresso/2017/11/15/Como-o-Twitter-reproduz-desigualdades-de-gênero-e-raça-do-mundo-offline"
 										target="_blank">Como o Twitter reproduz desigualdades de gênero e raça do mundo
-										offline</a>.</li>
+										offline</a>.
+								</li>
 							</ul>
 
 
@@ -1363,7 +1424,8 @@
 							<ul>
 								<li>The New York Times:
 									<a href="http://www.nytimes.com/2013/08/11/sunday-review/i-flirt-and-tweet-follow-me-at-socialbot.html?_r=2&amp;"
-										target="_blank">I Flirt and Tweet. Follow Me at #Socialbot</a>. </li>
+										target="_blank">I Flirt and Tweet. Follow Me at #Socialbot</a>.
+								</li>
 								<li>Huffington Post Tech:
 									<a href="http://www.huffingtonpost.com/2013/07/08/twitter-bots-influence_n_3542561.html"
 										target="_blank">Twitter Bots Have No Trouble Fooling You, Getting More Influence
@@ -1453,7 +1515,8 @@
 									</a>: You can login with your Twitter credentials, to see the political leaning
 									(between democratic and republican)
 									inferred for you. You can also search for other Twitter users and check their
-									political leanings.</li>
+									political leanings.
+								</li>
 
 								<li>
 									<a href="http://twitter-app.mpi-sws.org/footprint/" target="_blank">
@@ -1466,7 +1529,8 @@
 									footprint is not deleted automatically
 									and leaks information about you. Check what your secondary digital footprint reveals
 									about you and your
-									content.</li>
+									content.
+								</li>
 							</ul>
 
 						</section>
@@ -1502,8 +1566,9 @@
 							<h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">Talks
 							</h2>
 							<ul>
-								<li>(2020) On Blockchain Commit Times: An analysis of how miners choose Bitcoin transactions. <a
-									href="https://youtu.be/o_KZpNPJQiE">Second International KDD Workshop on Smart Data for Blockchain and Distributed Ledger (SDBD'20)</a>.
+								<li>(2020) On Blockchain Commit Times: An analysis of how miners choose Bitcoin
+									transactions. <a href="https://youtu.be/o_KZpNPJQiE">Second International KDD
+										Workshop on Smart Data for Blockchain and Distributed Ledger (SDBD'20)</a>.
 								</li>
 								<li>(2020) Countering Misinformation on Social Media Platforms. <a
 										href="https://www.thoughtworks.com/locations/brasil/">ThoughtWorks</a>. Belo
@@ -1617,7 +1682,8 @@
 							<div class="resume-section-content">
 								<ul class="list-unstyled resume-lang-list">
 									<li class="mb-2"><span class="resume-lang-name font-weight-bold">Portuguese</span>
-										<small class="text-muted font-weight-normal">(Native)</small></li>
+										<small class="text-muted font-weight-normal">(Native)</small>
+									</li>
 									<li class="mb-2 align-middle"><span
 											class="resume-lang-name font-weight-bold">English</span> <small
 											class="text-muted font-weight-normal">(Professional)</small></li>
