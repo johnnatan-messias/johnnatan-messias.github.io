@@ -558,7 +558,8 @@
 												<script>document.write(get_authors(["johnnatan_messias", "mohamed_alzayat", "balakrishnan_chandrasekaran", "krishna_gummadi", "patrick_loiseau", "alan_mislove"]))</script>
 											</li>
 											<li>In Proceedings of the ACM SIGCOMM Internet Measurement Conference (IMC
-												2021). Virtual Event. November, 2021. <font color="E7421F">To appear</font>.</li>
+												2021). Virtual Event. November, 2021. <font color="E7421F">To appear
+												</font>.</li>
 
 											<ul class="list-inline">
 												<li class="list-inline-item"><a href="#imc-tx-prioritization"
@@ -589,6 +590,60 @@
 													of decentralized (financial technology) systems, our findings call
 													for an urgent discussion on defining neutrality norms that miners
 													need to adhere to when ordering transactions in the chains.
+												</p>
+											</div>
+										</ul>
+										<ul class="list-inline">
+											<li>
+												<h6 class="resume-timeline-item-desc-heading font-weight-bold">
+													Modeling Coordinated vs. P2P Mining: An Analysis of Inefficiency and
+													Inequality in Proof-of-Work Blockchains</h6>
+											<li>
+												<script>document.write(get_authors(["mohamed_alzayat", "johnnatan_messias", "balakrishnan_chandrasekaran", "krishna_gummadi", "patrick_loiseau"]))</script>
+											</li>
+											<li>
+												<font color="E7421F">To appear</font>.
+											</li>
+
+											<ul class="list-inline">
+												<li class="list-inline-item"><a href="#arxiv-coordinated-mining"
+														data-toggle="collapse">
+														<span class="badge badge-dark badge-pill">Abstract</span></a>
+												</li>
+												<li class="list-inline-item"><a href="https://arxiv.org/abs/2106.02970"
+													target="_blank">
+													<span class="badge badge-danger badge-pill">ArXiv</span></a>
+											</li>
+											</ul>
+											</li>
+											<div id="arxiv-coordinated-mining" class="collapse">
+												<p class="font-italic"><b>Abstract:</b> We study efficiency in a
+													proof-of-work blockchain with non-zero latencies, focusing in
+													particular on the (inequality in) individual miners' efficiencies.
+													Prior work attributed differences in miners' efficiencies mostly to
+													attacks, but we pursue a different question: Can inequality in
+													miners' efficiencies be explained by delays, even when all miners
+													are honest? Traditionally, such efficiency-related questions were
+													tackled only at the level of the overall system, and in a
+													peer-to-peer (P2P) setting where miners directly connect to one
+													another. Despite it being common today for miners to pool compute
+													capacities in a mining pool managed by a centralized coordinator,
+													efficiency in such a coordinated setting has barely been studied.
+													In this paper, we propose a simple model of a proof-of-work
+													blockchain with latencies for both the P2P and the coordinated
+													settings. We derive a closed-form expression for the efficiency in
+													the coordinated setting with an arbitrary number of miners and
+													arbitrary latencies, both for the overall system and for each
+													individual miner. We leverage this result to show that inequalities
+													arise from variability in the delays, but that if all miners are
+													equidistant from the coordinator, they have equal efficiency
+													irrespective of their compute capacities. We then prove that, under
+													a natural consistency condition, the overall system efficiency in
+													the P2P setting is higher than that in the coordinated setting.
+													Finally, we perform a simulation-based study to demonstrate that
+													even in the P2P setting delays between miners introduce
+													inequalities, and that there is a more complex interplay between
+													delays and compute capacities.
 												</p>
 											</div>
 										</ul>
