@@ -124,33 +124,33 @@
 </head>
 
 <body>
-	<div  class="container"> 
-	<nav id="navbar-scroll" class="navbar fixed-top bg-light px-5 mb-5">
-		<a class="navbar-brand" href="#">Home</a>
-		<ul class="nav nav-pills">
-			<li class="nav-item">
-				<a class="nav-link active" href="#publications">Publications</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#press-coverage">Press</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#systems-applications">Systems</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#awards">Awards</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#talks">Talks</a>
-			</li>
-		</ul>
-	</nav>
-	<p></p>
-</div>
+	<div class="container">
+		<nav id="navbar-scroll" class="navbar fixed-top bg-light px-5 mb-5">
+			<a class="navbar-brand" href="#">Home</a>
+			<ul class="nav nav-pills">
+				<li class="nav-item">
+					<a class="nav-link active" href="#publications">Publications</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#press-coverage">Press</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#systems-applications">Systems</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#awards">Awards</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#talks">Talks</a>
+				</li>
+			</ul>
+		</nav>
+		<p></p>
+	</div>
 
 
-	<div tabindex="0" data-bs-spy="scroll" data-bs-target="#navbar-scroll"
-		data-bs-root-margin="0px 0px" data-bs-smooth-scroll="true">
+	<div tabindex="0" data-bs-spy="scroll" data-bs-target="#navbar-scroll" data-bs-root-margin="0px 0px"
+		data-bs-smooth-scroll="true">
 
 
 		<article class="resume-wrapper text-center position-relative">
@@ -293,10 +293,46 @@
 															<span
 																class="badge badge-dark badge-pill">Abstract</span></a>
 													</li>
+													<li class="list-inline-item"><a
+														href="pdf/messias-fc23-transaction-prioritization.pdf"
+														target="_blank">
+														<span class="badge badge-danger badge-pill">PDF</span></a>
+												</li>
+												<li class="list-inline-item"><a
+														href="https://github.com/johnnatan-messias/blockchain-transaction-ordering/"
+														target="_blank">
+														<span class="badge badge-warning badge-pill">Data</span>
+													</a></li>
 												</ul>
 												</li>
 												<div id="fc-tx-prioritization" class="collapse">
-													<p class="font-italic"><b>Abstract:</b> TBA
+													<p class="font-italic"><b>Abstract:</b> In permissionless
+														blockchains, transaction issuers include a fee to incentivize
+														miners to include their transaction. To accurately estimate this
+														prioritization fee for a transaction, transaction issuers (or
+														blockchain participants, more generally) rely on two fundamental
+														notions of transparency, namely contention and prioritization
+														transparency. Contention transparency implies that participants
+														are aware of every pending transaction that will contend with a
+														given transaction for inclusion. Prioritization transparency
+														states that the participants are aware of the transaction or
+														prioritization fees paid by every such contending transaction.
+														Neither of these notions of transparency holds well today.
+														Private relay networks, for instance, allow users to send
+														transactions privately to miners. Besides, users can offer fees
+														to miners via either direct transfers to miners' wallets or
+														off-chain payments---neither of which are public. In this work,
+														we characterize the lack of contention and prioritization
+														transparency in Bitcoin and Ethereum resulting from such
+														practices. We show that private relay networks are widely used
+														and private transactions are quite prevalent. We show that the
+														lack of transparency facilitates miners to collude and
+														overcharge users who may use these private relay networks
+														despite them offering little to no guarantees on transaction
+														prioritization. The lack of these transparencies in blockchains
+														has crucial implications for transaction issuers as well as the
+														stability of blockchains. Finally, we make our data sets and
+														scripts publicly available.
 
 													</p>
 												</div>
