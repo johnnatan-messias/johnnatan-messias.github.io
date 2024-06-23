@@ -103,6 +103,10 @@
 			"vabuk_pahari": ["Vabuk Pahari", "https://vpahari.github.io"],
 			"aviv_yaish": ["Aviv Yaish", "https://www.avivyaish.com"],
 			"benjamin_livshits": ["Benjamin Livshits", "https://www.doc.ic.ac.uk/~livshits"],
+			"krzysztof_gogol": ["Krzysztof Gogol", "https://www.linkedin.com/in/krzysztofgogol"],
+			"deborah_miori": ["Deborah Miori", "https://www.maths.ox.ac.uk/people/deborah.miori"],
+			"claudio_tessone": ["Claudio Tessone", "https://www.ifi.uzh.ch/en/bdlt/Team/Tessone.html"],
+			"maria_silva": ["Maria Inês Silva", "https://scholar.google.com/citations?user=USCr9NMAAAAJ"],
 		};
 		function parse_author_to_html(author) {
 			return '<a href="' + author[1] + '" target="_blank">' + author[0] + '</a>';
@@ -181,9 +185,9 @@
 								Software Systems
 								(MPI-SWS)</a>, earned in collaboration with <a
 								href="https://www.uni-saarland.de/en/">Universität des
-								Saarlandes (UdS)</a>, with <a
-								href="https://people.mpi-sws.org/~gummadi/">Dr.
-								Krishna P. Gummadi</a> as my advisor. My research primarily revolves around addressing fairness issues
+								Saarlandes (UdS)</a>, with <a href="https://people.mpi-sws.org/~gummadi/">Dr.
+								Krishna P. Gummadi</a> as my advisor. My research primarily revolves around addressing
+							fairness issues
 							in blockchain technology and within the realm of Decentralized Finance (DeFi).
 							In 2022, I did a 6-month research internship at
 							<a href="https://chainlinklabs.com">Chainlink Labs</a>.
@@ -234,6 +238,90 @@
 
 									<article class="resume position-relative mb-5">
 										<!--//resume-timeline-item-header-->
+
+										
+										<ul class="list-inline">
+											<li>
+												<h6 class="resume-timeline-item-desc-heading font-weight-bold">
+													Layer-2 Arbitrage: An Empirical Analysis of Swap Dynamics and Price
+													Disparities on Rollups</h6>
+											</li>
+											<li>
+												<script>document.write(get_authors(["krzysztof_gogol", "johnnatan_messias", "deborah_miori", "claudio_tessone", "benjamin_livshits"]))</script>
+
+											</li>
+											<li>Pre print.</li>
+
+											<ul class="list-inline">
+												<li class="list-inline-item"><a href="#arxiv-l2-arbitrage"
+														data-toggle="collapse">
+														<span class="badge badge-dark badge-pill">Abstract</span></a>
+												</li>
+												<li class="list-inline-item"><a href="https://arxiv.org/pdf/2406.02172"
+														target="_blank">
+														<span class="badge badge-danger badge-pill">PDF</span></a>
+												</li>
+											</ul>
+
+											<div id="arxiv-l2-arbitrage" class="collapse">
+												<p class="font-italic"><b>Abstract:</b> This paper explores the dynamics
+													of Decentralized Finance (DeFi) within the Layer-2 ecosystem,
+													focusing on Automated Market Makers (AMM) and arbitrage on Ethereum
+													rollups. We observe significant shifts in trading activity from
+													Ethereum to rollups, with swaps on rollups happening 2-3 times more
+													often, though, with lower trade volume. By examining the price
+													differences between AMMs and centralized exchanges, we discover over
+													0.5 million unexploited arbitrage opportunities on rollups.
+													Remarkably, we observe that these opportunities last, on average, 10
+													to 20 blocks, requiring adjustments to the LVR metrics to avoid
+													double-counting arbitrage. Our results show that arbitrage in
+													Arbitrum, Base, and Optimism pools ranges from 0.03% to 0.05% of
+													trading volume, while in zkSync Era it oscillates around 0.25%, with
+													the LVR metric overestimating arbitrage by a factor of five. Rollups
+													offer not only lower gas fees, but also provide faster block
+													production, leading to significant differences compared to the
+													trading and arbitrage dynamics of Ethereum.
+
+												</p>
+											</div>
+										</ul>
+
+
+
+										<ul class="list-inline">
+											<li>
+												<h6 class="resume-timeline-item-desc-heading font-weight-bold">
+													The Writing is on the Wall: Analyzing the Boom of Inscriptions and its Impact on EVM-compatible Blockchains</h6>
+											</li>
+											<li>
+												<script>document.write(get_authors(["johnnatan_messias", "krzysztof_gogol", "maria_silva", "benjamin_livshits"]))</script>
+
+											</li>
+											<li>Pre print.</li>
+
+											<ul class="list-inline">
+												<li class="list-inline-item"><a href="#arxiv-inscriptions"
+														data-toggle="collapse">
+														<span class="badge badge-dark badge-pill">Abstract</span></a>
+												</li>
+												<li class="list-inline-item"><a href="https://arxiv.org/pdf/2405.15288"
+														target="_blank">
+														<span class="badge badge-danger badge-pill">PDF</span></a>
+												</li>
+											</ul>
+
+											<div id="arxiv-inscriptions" class="collapse">
+												<p class="font-italic"><b>Abstract:</b> Despite the level of attention given to rollups there is limited empirical research about their performance. To address this gap, we conduct a comprehensive data-driven analysis of the late 2023 transaction boom that is attributed to inscriptions: a novel approach to record data onto a blockchain with no outside server needed. Inscriptions were first introduced on the Bitcoin blockchain to allow for the representation of NFTs or ERC-20-like tokens without smart contracts, but were later spread to other blockchains.
+													This work examines the applications of inscription transactions in Ethereum and its major EVM-compatible rollups and their impact on blockchain scalability during periods of sudden transaction surges. We found that on certain days, inscription-related transactions comprised over 89% on Arbitrum, over 88% on zkSync Era, and over 53% on Ethereum. Furthermore, 99% of these transactions were related to the minting of meme coins, followed by limited trading activity. Unlike L1 blockchains, during periods of transaction surges, zkSync and Arbitrum experienced lower median gas fees, attributable to the compression of L2 transactions for a single L1 batch. Additionally, zkSync Era, a ZK rollup, demonstrated a stronger reduction in fees than optimistic rollups considered in our study: Arbitrum, Base, and Optimism.
+
+												</p>
+											</div>
+										</ul>
+
+
+
+
+
 										<ul class="list-inline">
 											<li>
 												<h6 class="resume-timeline-item-desc-heading font-weight-bold">
@@ -1864,7 +1952,10 @@
 											<li>
 												<script>document.write(get_authors(["johnnatan_messias"]))</script>
 											</li>
-											<li>PhD Thesis. <a href="https://mpi-sws.org">Max Planck Institute for Software Systems (MPI-SWS)</a> & <a href="https://www.uni-saarland.de/en/">Saarland University (UdS)</a>. 2023.</li>
+											<li>PhD Thesis. <a href="https://mpi-sws.org">Max Planck Institute for
+													Software Systems (MPI-SWS)</a> & <a
+													href="https://www.uni-saarland.de/en/">Saarland University
+													(UdS)</a>. 2023.</li>
 
 											<ul class="list-inline">
 												<li class="list-inline-item"><a href="#phd-thesis"
@@ -1872,17 +1963,36 @@
 														<span class="badge badge-dark badge-pill">Abstract</span></a>
 												</li>
 												<li class="list-inline-item"><a
-														href="./pdf/phd-thesis_johnnatan_messias.pdf"
-														target="_blank">
+														href="./pdf/phd-thesis_johnnatan_messias.pdf" target="_blank">
 														<span class="badge badge-danger badge-pill">PDF</span></a>
 												</li>
 											</ul>
 											</li>
 											<div id="phd-thesis" class="collapse">
-												<p class="font-italic"><b>Abstract:</b> 
-													Blockchains revolutionized centralized sectors like banking and finance by promoting decentralization and transparency. In a blockchain, information is transmitted through transactions issued by participants or applications. Miners crucially select, order, and validate pending transactions for block inclusion, prioritizing those with higher incentives or fees. The order in which transactions are included can impact the blockchain final state.
-												<br><br>Moreover, applications running on top of a blockchain often rely on governance protocols to decentralize the decision-making power to make changes to their core functionality. These changes can affect how participants interact with these applications. Since one token equals one vote, participants holding multiple tokens have a higher voting power to support or reject the proposed changes. The extent to which this voting power is distributed is questionable and if highly concentrated among a few holders can lead to governance attacks.
-												<br><br>In this thesis, we audit the Bitcoin and Ethereum blockchains to investigate the norms followed by miners in determining the transaction prioritization. We also audit decentralized governance protocols such as Compound to evaluate whether the voting power is fairly distributed among the participants. Our findings have significant implications for future developments of blockchains and decentralized applications.
+												<p class="font-italic"><b>Abstract:</b>
+													Blockchains revolutionized centralized sectors like banking and
+													finance by promoting decentralization and transparency. In a
+													blockchain, information is transmitted through transactions issued
+													by participants or applications. Miners crucially select, order, and
+													validate pending transactions for block inclusion, prioritizing
+													those with higher incentives or fees. The order in which
+													transactions are included can impact the blockchain final state.
+													<br><br>Moreover, applications running on top of a blockchain often
+													rely on governance protocols to decentralize the decision-making
+													power to make changes to their core functionality. These changes can
+													affect how participants interact with these applications. Since one
+													token equals one vote, participants holding multiple tokens have a
+													higher voting power to support or reject the proposed changes. The
+													extent to which this voting power is distributed is questionable and
+													if highly concentrated among a few holders can lead to governance
+													attacks.
+													<br><br>In this thesis, we audit the Bitcoin and Ethereum
+													blockchains to investigate the norms followed by miners in
+													determining the transaction prioritization. We also audit
+													decentralized governance protocols such as Compound to evaluate
+													whether the voting power is fairly distributed among the
+													participants. Our findings have significant implications for future
+													developments of blockchains and decentralized applications.
 												</p>
 											</div>
 										</ul>
@@ -1895,7 +2005,9 @@
 											<li>
 												<script>document.write(get_authors(["johnnatan_messias"]))</script>
 											</li>
-											<li>Master Thesis. Computer Science Department. <a href="https://ufmg.br">Universidade Federal de Minas Gerais (UFMG)</a>. 2017.</li>
+											<li>Master Thesis. Computer Science Department. <a
+													href="https://ufmg.br">Universidade Federal de Minas Gerais
+													(UFMG)</a>. 2017.</li>
 
 											<ul class="list-inline">
 												<li class="list-inline-item"><a href="#master-thesis"
@@ -1958,7 +2070,9 @@
 											<li>
 												<script>document.write(get_authors(["johnnatan_messias"]))</script>
 											</li>
-											<li>Bachelor Thesis. Computer Science Department. <a href="https://ufop.br">Universidade Federal de Ouro Preto (UFOP)</a>. 2014.</li>
+											<li>Bachelor Thesis. Computer Science Department. <a
+													href="https://ufop.br">Universidade Federal de Ouro Preto
+													(UFOP)</a>. 2014.</li>
 
 											<ul class="list-inline">
 												<li class="list-inline-item"><a href="#bachelor-thesis"
