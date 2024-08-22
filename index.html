@@ -107,6 +107,9 @@
 			"deborah_miori": ["Deborah Miori", "https://www.maths.ox.ac.uk/people/deborah.miori"],
 			"claudio_tessone": ["Claudio Tessone", "https://www.ifi.uzh.ch/en/bdlt/Team/Tessone.html"],
 			"maria_silva": ["Maria Inês Silva", "https://scholar.google.com/citations?user=USCr9NMAAAAJ"],
+			"robin_fritsch":  ["Robin Fritsch", "https://disco.ethz.ch/members/rfritsch"],
+			"malte_schlosser":  ["Malte Schlosser", ""],
+			"benjamin_kraner":  ["Benjamin Kraner", "https://www.ifi.uzh.ch/en/bdlt/Team/PhD-Students/Benjamin-Kraner.html"],
 		};
 		function parse_author_to_html(author) {
 			return '<a href="' + author[1] + '" target="_blank">' + author[0] + '</a>';
@@ -242,6 +245,57 @@
 										<!--//resume-timeline-item-header-->
 
 
+										<ul class="list-inline">
+											<li>
+												<h6 class="resume-timeline-item-desc-heading font-weight-bold">
+													Liquid Staking Tokens in Automated Market Makers</h6>
+											</li>
+											<li>
+												<script>document.write(get_authors(["krzysztof_gogol", "robin_fritsch", "malte_schlosser", "johnnatan_messias", "benjamin_kraner", "claudio_tessone"]))</script>
+
+											</li>
+											<li>In Proceedings of the Mathematical Research for Blockchain Economy (MARBLE), Malaga, Spain,
+												July 2024.</li>
+
+											<ul class="list-inline">
+												<li class="list-inline-item"><a href="#marble-liquid-stacking"
+														data-toggle="collapse">
+														<span class="badge badge-dark badge-pill">Abstract</span></a>
+												</li>
+												<li class="list-inline-item"><a href="pdf/gogol-liquid-staking-marble24.pdf"
+														target="_blank">
+														<span class="badge badge-danger badge-pill">PDF</span></a>
+												</li>
+												<li class="list-inline-item">
+														<span class="badge badge-success badge-pill">Best paper award</span>
+													</li>
+											</ul>
+
+											<div id="marble-liquid-stacking" class="collapse">
+												<p class="font-italic"><b>Abstract:</b> This paper studies liquid
+													staking tokens (LSTs) on automated market makers (AMMs), both
+													theoretically and empirically. LSTs are tokenized representations of
+													staked assets on proof-of-stake blockchains. First, we model
+													LST-liquidity on AMMs theoretically, categorizing suitable AMM
+													types for LST liquidity and deriving formulas for the necessary
+													returns from trading fees to adequately compensate liquidity
+													providers under the particular price trajectories of LSTs. For the
+													latter, two relevant metrics are considered: (1) losses compared
+													to holding the liquidity outside the AMM (loss-versus-holding, or
+													"impermanent loss"), and (2) the relative profitability compared to
+													fully staking the capital (loss-versus-staking) which is
+													specifically tailored to the case of LST-liquidity. Next, we
+													empirically measure these metrics for Ethereum LSTs across the most
+													relevant AMM pools. We find that, while trading fees often
+													compensate for impermanent loss, fully staking is more profitable
+													for many pools, raising questions about the sustainability of the
+													current LST liquidity allocation to AMMs.
+
+												</p>
+											</div>
+										</ul>
+
+
 
 
 										<ul class="list-inline">
@@ -250,7 +304,7 @@
 													A Public Dataset For the ZKsync Rollup</h6>
 											</li>
 											<li>
-												<script>document.write(get_authors(["maria_silva", "johnnatan_messias",  "benjamin_livshits"]))</script>
+												<script>document.write(get_authors(["maria_silva", "johnnatan_messias", "benjamin_livshits"]))</script>
 
 											</li>
 											<li>Pre print.</li>
@@ -265,27 +319,31 @@
 														<span class="badge badge-danger badge-pill">PDF</span></a>
 												</li>
 												<li class="list-inline-item"><a
-													href="https://github.com/matter-labs/zksync-data-dump"
-													target="_blank">
-													<span class="badge badge-warning badge-pill">Data</span>
-												</a></li>
+														href="https://github.com/matter-labs/zksync-data-dump"
+														target="_blank">
+														<span class="badge badge-warning badge-pill">Data</span>
+													</a></li>
 											</ul>
 
 											<div id="arxiv-zksync-data" class="collapse">
-												<p class="font-italic"><b>Abstract:</b> Despite blockchain data being publicly available, practical challenges and high costs often hinder its effective use by
-													researchers, thus limiting data-driven research and exploration in the blockchain space. This is especially true when it
-													comes to Layer 2 (L2) ecosystems, and ZKsync, in particular. To address these issues, we have curated a dataset from 1 year of activity extracted from a ZKsync Era archive node and
-													made it freely available to external parties. In this paper, we provide details on this dataset and how it was created,
-													showcase a few example analyses that can be performed with it, and discuss some future research directions. We also
-													publish and share the code used in our analysis on GitHub to promote reproducibility and to support further research.
+												<p class="font-italic"><b>Abstract:</b> Despite blockchain data being
+													publicly available, practical challenges and high costs often hinder
+													its effective use by
+													researchers, thus limiting data-driven research and exploration in
+													the blockchain space. This is especially true when it
+													comes to Layer 2 (L2) ecosystems, and ZKsync, in particular. To
+													address these issues, we have curated a dataset from 1 year of
+													activity extracted from a ZKsync Era archive node and
+													made it freely available to external parties. In this paper, we
+													provide details on this dataset and how it was created,
+													showcase a few example analyses that can be performed with it, and
+													discuss some future research directions. We also
+													publish and share the code used in our analysis on GitHub to promote
+													reproducibility and to support further research.
 
 												</p>
 											</div>
 										</ul>
-
-
-
-
 										<ul class="list-inline">
 											<li>
 												<h6 class="resume-timeline-item-desc-heading font-weight-bold">
