@@ -2,7 +2,7 @@
 
 A simple web template in PHP for researchers.
 
-Example: [http://johnnatan.me](http://johnnatan.me)
+Example: [https://johnnatan-messias.github.io](https://johnnatan-messias.github.io)
 
 ## What's New
 ----------
