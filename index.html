@@ -155,6 +155,7 @@
 			"glauber_goncalves": ["Glauber Dias Gonçalves", "https://sites.google.com/a/ufpi.edu.br/ggoncalves"],
 			"francisco_airton_silva": ["Francisco Airton Silva", "https://scholar.google.com/citations?user=JhN6a-wAAAAJ"],
 			"andre_soares": ["André C. B. Soares", "#"],
+			"christof_ferreira_torres": ["Christof Ferreira Torres", "https://www.christoftorres.com"],
 		};
 		function parse_author_to_html(author) {
 			return '<a href="' + author[1] + '" target="_blank">' + author[0] + '</a>';
@@ -297,6 +298,59 @@
 									<article class="resume position-relative mb-5">
 										<!--//resume-timeline-item-header-->
 
+
+										<ul class="list-inline">
+											<li>
+												<h6 class="resume-timeline-item-desc-heading font-weight-bold">
+													The Express Lane to Spam and Centralization: An Empirical Analysis of Arbitrum's Timeboost</h6>
+											</li>
+											<li>
+												<script>document.write(get_authors(["johnnatan_messias", "christof_ferreira_torres"]))</script>
+
+											</li>
+											<li>Pre print.</li>
+
+											<ul class="list-inline">
+												<li class="list-inline-item"><a href="#arxiv-timeboost"
+														data-toggle="collapse">
+														<span class="badge badge-dark badge-pill">Abstract</span></a>
+												</li>
+												<li class="list-inline-item"><a href="https://arxiv.org/pdf/2509.22143"
+														target="_blank">
+														<span class="badge badge-danger badge-pill">PDF</span></a>
+												</li>
+
+											</ul>
+
+											<div id="arxiv-timeboost" class="collapse">
+												<p class="font-italic"><b>Abstract:</b> DeFi applications are vulnerable
+													to MEV, where specialized actors profit by reordering or inserting
+													transactions. To mitigate latency races and internalize MEV revenue,
+													Arbitrum introduced Timeboost, an auction-based transaction
+													sequencing mechanism that grants short-term priority access to an
+													express lane. In this paper we present the first large-scale
+													empirical study of Timeboost, analyzing over 11.5 million express
+													lane transactions and 151 thousand auctions between April and July
+													2025. Our results reveal five main findings. First, express lane
+													control is highly centralized, with two entities winning more than
+													90% of auctions. Second, while express lane access provides earlier
+													inclusion, profitable MEV opportunities cluster at the end of
+													blocks, limiting the value of priority access. Third, approximately
+													22% of time-boosted transactions are reverted, indicating that the
+													Timeboost does not effectively mitigate spam. Fourth, secondary
+													markets for reselling express lane rights have collapsed due to poor
+													execution reliability and unsustainable economics. Finally, auction
+													competition declined over time, leading to steadily reduced revenue
+													for the Arbitrum DAO. Taken together, these findings show that
+													Timeboost fails to deliver on its stated goals of fairness,
+													decentralization, and spam reduction. Instead, it reinforces
+													centralization and narrows adoption, highlighting the limitations of
+													auction-based ordering as a mechanism for fair transaction
+													sequencing in rollups.
+
+												</p>
+											</div>
+										</ul>
 
 										<ul class="list-inline">
 											<li>
@@ -2688,7 +2742,8 @@
 							</h2>
 							<ul>
 								<li>[2025] - <a href="https://conference.tum-blockchain.com">Airdrops:
-										Giving Money Away Is Harder Than It Seems</a>. TUM Blockchain Conference. Munich, Germany.
+										Giving Money Away Is Harder Than It Seems</a>. TUM Blockchain Conference.
+									Munich, Germany.
 								</li>
 								<li>[2025] - <a href="https://www.youtube.com/watch?v=evfTos8WXDY">Fairness in Token
 										Delegation: Mitigating Voting Power Concentration in Decentralized
