@@ -81,7 +81,7 @@
         transform: scaleX(1);
       }
     }
-
+/* 
     .reveal {
       opacity: 0;
       animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
@@ -109,7 +109,7 @@
 
     .reveal-6 {
       animation-delay: 0.55s;
-    }
+    } */
 
     /* ── NAV ── */
     nav {
@@ -2438,19 +2438,19 @@
     });
 
     // ── SCROLL REVEAL ──
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.animationPlayState = 'running';
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
+    // const observer = new IntersectionObserver((entries) => {
+    //   entries.forEach(entry => {
+    //     if (entry.isIntersecting) {
+    //       entry.target.style.animationPlayState = 'running';
+    //       observer.unobserve(entry.target);
+    //     }
+    //   });
+    // }, { threshold: 0.1 });
 
-    document.querySelectorAll('.reveal').forEach(el => {
-      el.style.animationPlayState = 'paused';
-      observer.observe(el);
-    });
+    // document.querySelectorAll('.reveal').forEach(el => {
+    //   el.style.animationPlayState = 'paused';
+    //   observer.observe(el);
+    // });
   </script>
 </body>
 
