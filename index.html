@@ -72,12 +72,12 @@
     :root {
       --ink: #0f0f0e;
       --ink-light: #3d3b38;
-      --ink-muted: #7a7672;
+      --ink-muted: #68645f;
       --paper: #faf8f4;
       --paper-2: #f2efe8;
       --rule: #ddd9d0;
       --accent: #1a3a5c;
-      --accent-2: #c8873a;
+      --accent-2: #9a5c18;
       --serif: 'Playfair Display', Georgia, serif;
       --body: 'Source Serif 4', Georgia, serif;
       --mono: 'JetBrains Mono', monospace;
@@ -376,6 +376,23 @@
       background: var(--paper-2);
     }
 
+    .hero-text-link {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.5rem 0.25rem;
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      text-transform: uppercase;
+      border-bottom: 1px solid transparent;
+    }
+
+    .hero-text-link:hover {
+      border-bottom-color: var(--accent);
+    }
+
     .hero-photo {
       animation: fadeIn 0.8s 0.4s ease both;
     }
@@ -425,7 +442,7 @@
 
     .stat-label {
       font-family: var(--mono);
-      font-size: 0.65rem;
+      font-size: 0.68rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--ink-muted);
@@ -474,7 +491,7 @@
 
     .section-label {
       font-family: var(--mono);
-      font-size: 0.65rem;
+      font-size: 0.68rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--ink-muted);
@@ -494,7 +511,7 @@
     }
 
     .highlight-card {
-      border: 1px solid var(--rule);
+      border-top: 2px solid var(--accent);
       background: var(--paper-2);
       padding: 1.25rem;
     }
@@ -504,7 +521,7 @@
       margin-bottom: 0.55rem;
       color: var(--accent-2);
       font-family: var(--mono);
-      font-size: 0.63rem;
+      font-size: 0.68rem;
       letter-spacing: 0.08em;
     }
 
@@ -526,28 +543,6 @@
       color: var(--accent);
       text-decoration: none;
       border-bottom: 1px solid rgba(26, 58, 92, 0.25);
-    }
-
-    .news-list {
-      display: grid;
-      gap: 0;
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .news-item {
-      display: grid;
-      grid-template-columns: 76px 1fr;
-      gap: 1rem;
-      padding: 0.75rem 0;
-      border-top: 1px solid var(--rule);
-      font-size: 0.88rem;
-      line-height: 1.5;
-    }
-
-    .news-date {
-      color: var(--ink-muted);
-      font-family: var(--mono);
-      font-size: 0.66rem;
     }
 
     .artifact-grid {
@@ -597,7 +592,7 @@
 
     .filter-btn {
       font-family: var(--mono);
-      font-size: 0.67rem;
+      font-size: 0.68rem;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       padding: 0.35rem 0.85rem;
@@ -665,7 +660,7 @@
 
     .pub-tag {
       font-family: var(--mono);
-      font-size: 0.6rem;
+      font-size: 0.68rem;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       padding: 0.15rem 0.5rem;
@@ -735,7 +730,7 @@
 
     .pub-link {
       font-family: var(--mono);
-      font-size: 0.65rem;
+      font-size: 0.68rem;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--accent);
@@ -752,7 +747,7 @@
     /* ── SUMMARY TOGGLE ── */
     .summary-toggle {
       font-family: var(--mono);
-      font-size: 0.65rem;
+      font-size: 0.68rem;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--ink-muted);
@@ -794,7 +789,7 @@
 
     .widget-head {
       font-family: var(--mono);
-      font-size: 0.65rem;
+      font-size: 0.68rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--ink-muted);
@@ -890,7 +885,7 @@
 
     .press-outlet {
       font-family: var(--mono);
-      font-size: 0.65rem;
+      font-size: 0.68rem;
       letter-spacing: 0.04em;
       color: var(--ink-muted);
       white-space: nowrap;
@@ -939,7 +934,7 @@
 
     .edu-year {
       font-family: var(--mono);
-      font-size: 0.65rem;
+      font-size: 0.68rem;
       color: var(--ink-muted);
       letter-spacing: 0.04em;
     }
@@ -953,7 +948,7 @@
 
     .service-pill {
       font-family: var(--mono);
-      font-size: 0.63rem;
+      font-size: 0.68rem;
       letter-spacing: 0.05em;
       text-transform: uppercase;
       padding: 0.25rem 0.6rem;
@@ -1022,13 +1017,13 @@
       padding: 2rem;
       text-align: center;
       font-family: var(--mono);
-      font-size: 0.65rem;
+      font-size: 0.68rem;
       letter-spacing: 0.06em;
       color: var(--ink-muted);
     }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 860px) {
+    @media (max-width: 1020px) {
       .hero {
         grid-template-columns: 1fr;
       }
@@ -1044,10 +1039,6 @@
 
       .container {
         grid-template-columns: 1fr;
-      }
-
-      .side-col {
-        order: -1;
       }
 
       .stats-inner {
@@ -1159,16 +1150,13 @@
           </svg>
           Download CV
         </a>
-        <a class="btn btn-outline" href="https://johnnatan-messias.github.io/pdf/portfolio.pdf" target="_blank">
-          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
-          </svg>
-          Download Portfolio
-        </a>
         <a class="btn btn-outline" href="https://scholar.google.com/citations?user=EoGEeFAAAAAJ" target="_blank">Google
           Scholar</a>
-        <a class="btn btn-outline" href="https://dblp.uni-trier.de/pers/hd/m/Messias:Johnnatan" target="_blank">DBLP</a>
         <a class="btn btn-outline" href="https://orcid.org/0000-0002-6021-8402" target="_blank">ORCID</a>
+        <a class="hero-text-link" href="https://johnnatan-messias.github.io/pdf/portfolio.pdf"
+          target="_blank">Portfolio ↗</a>
+        <a class="hero-text-link" href="https://dblp.uni-trier.de/pers/hd/m/Messias:Johnnatan"
+          target="_blank">DBLP ↗</a>
       </div>
       <p class="collab-note">Interested in collaborating on decentralized systems, governance, or empirical blockchain research? <a href="mailto:johnme@mpi-sws.org">Get in touch.</a></p>
     </div>
@@ -1234,20 +1222,6 @@
           </article>
         </div>
       </section>
-
-      <!-- RECENT NEWS
-      <section class="section" id="news">
-        <div class="section-head reveal reveal-1">
-          <h2>Recent News</h2>
-          <div class="section-rule"></div>
-          <span class="section-label">Updates</span>
-        </div>
-        <div class="news-list reveal reveal-2">
-          <div class="news-item"><span class="news-date">2026</span><span>Serving on the program committees of Financial Cryptography and Data Security and The Web Conference.</span></div>
-          <div class="news-item"><span class="news-date">2026</span><span>Guest edited the two-part ACM TWEB Special Issue on Advanced Technologies in the Decentralized Web.</span></div>
-          <div class="news-item"><span class="news-date">2026</span><span>Selected participant at the IC3 Winter Retreat in Engelberg, Switzerland.</span></div>
-        </div>
-      </section> -->
 
       <!-- PUBLICATIONS -->
       <section class="section" id="publications">
