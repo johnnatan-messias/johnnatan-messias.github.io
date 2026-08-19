@@ -12,13 +12,15 @@
 
   <meta name="description"
     content="Research Scientist at MPI-SWS working on blockchain fairness, DeFi, DAO governance, and prediction markets.">
+  <link rel="canonical" href="https://johnnatan-messias.github.io/">
 
   <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://johnnatan-messias.github.io/">
   <meta property="og:title" content="Dr. Johnnatan Messias — Research Scientist">
   <meta property="og:description" content="Blockchain Fairness · DeFi · DAO Governance · Prediction Markets">
-  <meta property="og:image" content="https://johnnatan-messias.github.io/assets/images/profile.jpg">
+  <meta property="og:image" content="https://johnnatan-messias.github.io/assets/images/social-preview.png">
+  <meta property="og:image:alt" content="Dr. Johnnatan Messias — blockchain fairness, DeFi, DAO governance, and prediction markets">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
@@ -27,13 +29,43 @@
   <meta name="twitter:url" content="https://johnnatan-messias.github.io/">
   <meta name="twitter:title" content="Dr. Johnnatan Messias — Research Scientist">
   <meta name="twitter:description" content="Blockchain Fairness · DeFi · DAO Governance · Prediction Markets">
-  <meta name="twitter:image" content="https://johnnatan-messias.github.io/assets/images/profile.jpg">
+  <meta name="twitter:image" content="https://johnnatan-messias.github.io/assets/images/social-preview.png">
+  <meta name="twitter:image:alt" content="Dr. Johnnatan Messias — blockchain fairness, DeFi, DAO governance, and prediction markets">
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Johnnatan Messias Peixoto Afonso",
+      "honorificPrefix": "Dr.",
+      "url": "https://johnnatan-messias.github.io/",
+      "image": "https://johnnatan-messias.github.io/assets/images/profile.jpg",
+      "jobTitle": "Research Scientist",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "Max Planck Institute for Software Systems",
+        "url": "https://www.mpi-sws.org/"
+      },
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "Saarland University"
+      },
+      "sameAs": [
+        "https://scholar.google.com/citations?user=EoGEeFAAAAAJ",
+        "https://dblp.uni-trier.de/pers/hd/m/Messias:Johnnatan",
+        "https://orcid.org/0000-0002-6021-8402",
+        "https://github.com/johnnatan-messias/",
+        "https://www.linkedin.com/in/johnnatan-messias/"
+      ],
+      "knowsAbout": ["Blockchain fairness", "Decentralized finance", "DAO governance", "Prediction markets", "MEV"]
+    }
+  </script>
 
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap"
     rel="stylesheet" />
   <style>
     /* ── TOKENS ── */
@@ -72,6 +104,29 @@
       font-size: clamp(15px, 1.6vw, 17px);
       line-height: 1.75;
       -webkit-font-smoothing: antialiased;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--accent-2);
+      outline-offset: 3px;
+    }
+
+    .skip-link {
+      position: fixed;
+      top: 0.5rem;
+      left: 0.5rem;
+      z-index: 1000;
+      padding: 0.55rem 0.8rem;
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      text-decoration: none;
+      transform: translateY(-150%);
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
     }
 
     /* ── ANIMATIONS ── */
@@ -170,7 +225,7 @@
 
     .nav-links {
       display: flex;
-      gap: 2rem;
+      gap: 1.2rem;
       list-style: none;
     }
 
@@ -186,6 +241,19 @@
 
     .nav-links a:hover {
       color: var(--accent);
+    }
+
+    .nav-toggle {
+      display: none;
+      padding: 0.4rem 0.55rem;
+      border: 1px solid var(--rule);
+      background: transparent;
+      color: var(--ink);
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
     }
 
     /* ── HERO ── */
@@ -258,6 +326,16 @@
       gap: 0.75rem;
       margin-top: 2rem;
       animation: fadeUp 0.6s 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .collab-note {
+      margin-top: 1rem;
+      color: var(--ink-muted);
+      font-size: 0.82rem;
+    }
+
+    .collab-note a {
+      color: var(--accent);
     }
 
     .btn {
@@ -405,6 +483,108 @@
     /* ── SECTION SPACING ── */
     .section {
       margin-bottom: 4rem;
+      scroll-margin-top: 5rem;
+    }
+
+    /* ── RESEARCH OVERVIEW ── */
+    .highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .highlight-card {
+      border: 1px solid var(--rule);
+      background: var(--paper-2);
+      padding: 1.25rem;
+    }
+
+    .highlight-number {
+      display: block;
+      margin-bottom: 0.55rem;
+      color: var(--accent-2);
+      font-family: var(--mono);
+      font-size: 0.63rem;
+      letter-spacing: 0.08em;
+    }
+
+    .highlight-card h3 {
+      margin-bottom: 0.45rem;
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      line-height: 1.3;
+    }
+
+    .highlight-card p {
+      color: var(--ink-light);
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+
+    .highlight-card a,
+    .artifact-card a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(26, 58, 92, 0.25);
+    }
+
+    .news-list {
+      display: grid;
+      gap: 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .news-item {
+      display: grid;
+      grid-template-columns: 76px 1fr;
+      gap: 1rem;
+      padding: 0.75rem 0;
+      border-top: 1px solid var(--rule);
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .news-date {
+      color: var(--ink-muted);
+      font-family: var(--mono);
+      font-size: 0.66rem;
+    }
+
+    .artifact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .artifact-card {
+      padding: 1.1rem;
+      border-top: 2px solid var(--accent);
+      background: var(--paper-2);
+    }
+
+    .artifact-card h3 {
+      margin-bottom: 0.35rem;
+      font-size: 0.95rem;
+      line-height: 1.35;
+    }
+
+    .artifact-card p {
+      margin-bottom: 0.65rem;
+      color: var(--ink-muted);
+      font-size: 0.8rem;
+      line-height: 1.55;
+    }
+
+    .archive-toggle {
+      margin-top: 1.4rem;
+    }
+
+    .pub-item.archive-hidden {
+      display: none;
+    }
+
+    .publication-archive-section.archive-hidden {
+      display: none;
     }
 
     /* ── FILTER TABS ── */
@@ -874,8 +1054,40 @@
         grid-template-columns: repeat(2, 1fr);
       }
 
+      .nav-toggle {
+        display: inline-flex;
+      }
+
+      .nav-inner {
+        position: relative;
+      }
+
       .nav-links {
+        position: absolute;
+        top: 56px;
+        right: 1rem;
+        left: 1rem;
         display: none;
+        flex-direction: column;
+        gap: 0;
+        padding: 0.5rem;
+        border: 1px solid var(--rule);
+        background: var(--paper);
+        box-shadow: 0 8px 24px rgba(15, 15, 14, 0.08);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 0.65rem;
+      }
+
+      .highlight-grid,
+      .artifact-grid {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -884,17 +1096,32 @@
         grid-template-columns: repeat(2, 1fr);
       }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
   </style>
 </head>
 
 <body>
 
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
   <!-- NAV -->
   <nav>
     <div class="nav-inner">
       <a href="#" class="nav-brand">Dr. Johnnatan Messias</a>
-      <ul class="nav-links">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">Menu</button>
+      <ul class="nav-links" id="primary-navigation">
         <li><a href="#about">About</a></li>
+        <li><a href="#highlights">Research</a></li>
         <li><a href="#publications">Publications</a></li>
         <li><a href="#talks">Talks</a></li>
         <li><a href="#teaching">Teaching</a></li>
@@ -912,7 +1139,7 @@
     <div class="hero-text">
       <p class="hero-eyebrow">Research Scientist · MPI-SWS</p>
       <h1>Dr. Johnnatan Messias</h1>
-      <p class="hero-title">Blockchain Fairness, DeFi, Decentralized Governance &amp; Prediction Markets</p>
+      <p class="hero-title">I study how power, value, and fairness are shaped by the technical and governance mechanisms of decentralized systems.</p>
       <div class="hero-bio">
         <p>I am a Research Scientist at the <a href="https://www.mpi-sws.org/" target="_blank">Max Planck Institute for
             Software Systems (MPI-SWS)</a> and a former Research Scientist at <a href="http://matter-labs.io"
@@ -921,7 +1148,7 @@
         <p style="margin-top:0.8rem">I hold a Ph.D. in Computer Science (Magna Cum Laude) from MPI-SWS &amp; Universität
           des Saarlandes, advised by <a href="https://people.mpi-sws.org/~gummadi/" target="_blank">Krishna P.
             Gummadi</a>. I serve on the program committees such as FC, WWW, AFT, and CAAW, and as Guest Editor for both
-          ACM Transactions on the Web and Springer Discovery Networks.</p>
+          ACM Transactions on the Web and Springer Discover Networks.</p>
         <p><u>Full name:</u> Johnnatan Messias Peixoto Afonso</p>
       </div>
       <div class="hero-links">
@@ -941,10 +1168,13 @@
         <a class="btn btn-outline" href="https://scholar.google.com/citations?user=EoGEeFAAAAAJ" target="_blank">Google
           Scholar</a>
         <a class="btn btn-outline" href="https://dblp.uni-trier.de/pers/hd/m/Messias:Johnnatan" target="_blank">DBLP</a>
+        <a class="btn btn-outline" href="https://orcid.org/0000-0002-6021-8402" target="_blank">ORCID</a>
       </div>
+      <p class="collab-note">Interested in collaborating on decentralized systems, governance, or empirical blockchain research? <a href="mailto:johnme@mpi-sws.org">Get in touch.</a></p>
     </div>
     <div class="hero-photo">
-      <img src="https://johnnatan-messias.github.io/assets/images/profile.jpg" alt="Dr. Johnnatan Messias" />
+      <img src="https://johnnatan-messias.github.io/assets/images/profile.jpg" alt="Portrait of Dr. Johnnatan Messias"
+        width="180" height="180" fetchpriority="high" />
     </div>
   </header>
 
@@ -972,7 +1202,52 @@
 
   <!-- MAIN CONTENT -->
   <div class="container">
-    <main class="main-col">
+    <main class="main-col" id="main-content">
+
+      <!-- RESEARCH HIGHLIGHTS -->
+      <section class="section" id="highlights">
+        <div class="section-head reveal reveal-1">
+          <h2>Research Highlights</h2>
+          <div class="section-rule"></div>
+          <span class="section-label">Overview</span>
+        </div>
+        <div class="highlight-grid reveal reveal-2">
+          <article class="highlight-card">
+            <span class="highlight-number">01 · FAIRNESS &amp; MEV</span>
+            <h3>Transparent transaction ordering</h3>
+            <p>Measuring and mitigating opaque or self-interested transaction ordering across blockchain systems. <a href="#publications">Explore publications ↓</a></p>
+          </article>
+          <article class="highlight-card">
+            <span class="highlight-number">02 · GOVERNANCE</span>
+            <h3>Power in decentralized organizations</h3>
+            <p>Understanding voting-power concentration, delegation, and the mechanisms that shape participation in DAOs. <a href="#publications">Explore publications ↓</a></p>
+          </article>
+          <article class="highlight-card">
+            <span class="highlight-number">03 · DIGITAL ASSETS</span>
+            <h3>DeFi, airdrops, and crypto markets</h3>
+            <p>Studying how protocols distribute value and how participants respond to incentives across emerging financial systems. <a href="#publications">Explore publications ↓</a></p>
+          </article>
+          <article class="highlight-card">
+            <span class="highlight-number">04 · COLLECTIVE BELIEFS</span>
+            <h3>Prediction markets as societal signals</h3>
+            <p>Investigating what markets reveal about collective expectations and beliefs about future events. <a href="#talks">See related talks ↓</a></p>
+          </article>
+        </div>
+      </section>
+
+      <!-- RECENT NEWS
+      <section class="section" id="news">
+        <div class="section-head reveal reveal-1">
+          <h2>Recent News</h2>
+          <div class="section-rule"></div>
+          <span class="section-label">Updates</span>
+        </div>
+        <div class="news-list reveal reveal-2">
+          <div class="news-item"><span class="news-date">2026</span><span>Serving on the program committees of Financial Cryptography and Data Security and The Web Conference.</span></div>
+          <div class="news-item"><span class="news-date">2026</span><span>Guest edited the two-part ACM TWEB Special Issue on Advanced Technologies in the Decentralized Web.</span></div>
+          <div class="news-item"><span class="news-date">2026</span><span>Selected participant at the IC3 Winter Retreat in Engelberg, Switzerland.</span></div>
+        </div>
+      </section> -->
 
       <!-- PUBLICATIONS -->
       <section class="section" id="publications">
@@ -1874,7 +2149,7 @@
         </div>
 
         <!-- Brazilian Venues subsection -->
-        <div style="margin-top:3rem;">
+        <div class="publication-archive-section" style="margin-top:3rem;">
           <div class="section-head" style="margin-bottom:1.5rem;">
             <h2 style="font-size:1.15rem; color:var(--ink-muted);">Brazilian Venues</h2>
             <div class="section-rule"></div>
@@ -2041,7 +2316,7 @@
         </div>
 
         <!-- Theses subsection -->
-        <div style="margin-top:3rem;">
+        <div class="publication-archive-section" style="margin-top:3rem;">
           <div class="section-head" style="margin-bottom:1.5rem;">
             <h2 style="font-size:1.15rem; color:var(--ink-muted);">Theses &amp; Technical Reports</h2>
             <div class="section-rule"></div>
@@ -2127,11 +2402,45 @@
           </div>
         </div>
 
+        <button class="btn btn-outline archive-toggle" id="publication-archive-toggle" type="button"
+          aria-expanded="false">View all publications</button>
+
         <p style="margin-top:1.5rem; font-size:0.82rem; color:var(--ink-muted); font-style:italic;">
           For a complete list, see <a href="https://scholar.google.com/citations?user=EoGEeFAAAAAJ"
             style="color:var(--accent)">Google Scholar</a> or <a
             href="https://dblp.uni-trier.de/pers/hd/m/Messias:Johnnatan" style="color:var(--accent)">DBLP</a>.
         </p>
+      </section>
+
+      <!-- RESEARCH ARTIFACTS -->
+      <section class="section" id="artifacts">
+        <div class="section-head reveal reveal-1">
+          <h2>Research Artifacts</h2>
+          <div class="section-rule"></div>
+          <span class="section-label">Open Research</span>
+        </div>
+        <div class="artifact-grid reveal reveal-2">
+          <article class="artifact-card">
+            <h3>ZKsync Era public dataset</h3>
+            <p>A reusable data release supporting empirical analysis of activity on the ZKsync Era rollup.</p>
+            <a href="https://github.com/matter-labs/zksync-data-dump" target="_blank">Dataset and documentation ↗</a>
+          </article>
+          <article class="artifact-card">
+            <h3>Blockchain transaction ordering</h3>
+            <p>Research data and supporting material for studying opaque and self-interested transaction ordering.</p>
+            <a href="https://github.com/johnnatan-messias/blockchain-transaction-ordering/" target="_blank">View repository ↗</a>
+          </article>
+          <article class="artifact-card">
+            <h3>DAO governance</h3>
+            <p>Data supporting research into voting power, delegation, and governance participation.</p>
+            <a href="https://github.com/johnnatan-messias/research-proj-governance" target="_blank">View repository ↗</a>
+          </article>
+          <article class="artifact-card">
+            <h3>EVM inscriptions</h3>
+            <p>Data and analysis resources for measuring the inscriptions boom on EVM-compatible blockchains.</p>
+            <a href="https://github.com/johnnatan-messias/research-inscriptions-boom" target="_blank">View repository ↗</a>
+          </article>
+        </div>
       </section>
 
       <!-- TALKS -->
@@ -2274,7 +2583,7 @@
               <div>
                 <div class="pub-tags"><span class="pub-tag">Guest Editor · ACM TWEB</span></div>
                 <div class="talk-title">Introduction to the Special Issue on Advanced Technologies in the Decentralized Web (Part 2)</div>
-                <div class="talk-venue">ACM Transactions on the Web</div>
+                <div class="talk-venue">ACM Transactions on the Web · Special Issue</div>
               </div>
             </div>
             <div class="talk-item">
@@ -2282,7 +2591,7 @@
               <div>
                 <div class="pub-tags"><span class="pub-tag">Guest Editor · ACM TWEB</span></div>
                 <div class="talk-title">Introduction to the Special Issue on Advanced Technologies in the Decentralized Web (Part 1)</div>
-                <div class="talk-venue">ACM Transactions on the Web</div>
+                <div class="talk-venue">ACM Transactions on the Web · Special Issue</div>
                 <div class="pub-links">
                   <a class="pub-link" href="https://dl.acm.org/doi/10.1145/3790103" target="_blank">Editorial ↗</a>
                 </div>
@@ -2301,14 +2610,14 @@
 
         <div class="reveal reveal-3" style="margin-top:2rem;">
           <div class="widget-head">Program Committees</div>
-          <div class="service-list">
-            <span class="service-pill">FC 2026</span>
-            <span class="service-pill">WWW 2026</span>
-            <span class="service-pill">AFT 2025</span>
-            <span class="service-pill">FC 2025</span>
-            <span class="service-pill">CAAW 2025</span>
-            <span class="service-pill">AFT 2024</span>
-            <span class="service-pill">WWW 2024</span>
+          <div class="talk-list">
+            <div class="talk-item"><span class="talk-year">2026</span><div><div class="talk-title">Financial Cryptography and Data Security (FC)</div></div></div>
+            <div class="talk-item"><span class="talk-year">2026</span><div><div class="talk-title">The Web Conference (WWW)</div></div></div>
+            <div class="talk-item"><span class="talk-year">2025</span><div><div class="talk-title">Advances in Financial Technologies (AFT)</div></div></div>
+            <div class="talk-item"><span class="talk-year">2025</span><div><div class="talk-title">Financial Cryptography and Data Security (FC)</div></div></div>
+            <div class="talk-item"><span class="talk-year">2025</span><div><div class="talk-title">International Cryptoasset Analytics Workshop (CAAW)</div></div></div>
+            <div class="talk-item"><span class="talk-year">2024</span><div><div class="talk-title">Advances in Financial Technologies (AFT)</div></div></div>
+            <div class="talk-item"><span class="talk-year">2024</span><div><div class="talk-title">The Web Conference (WWW)</div></div></div>
           </div>
         </div>
       </section>
@@ -2532,7 +2841,7 @@
           <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.82rem;">
             <span style="color:var(--ink)">German</span>
             <span
-              style="font-family:var(--mono); font-size:0.65rem; color:var(--ink-muted); letter-spacing:0.06em; text-transform:uppercase;">Intermediary</span>
+              style="font-family:var(--mono); font-size:0.65rem; color:var(--ink-muted); letter-spacing:0.06em; text-transform:uppercase;">Intermediate</span>
           </div>
         </div>
       </div>
@@ -2549,23 +2858,45 @@
     // ── PUBLICATION FILTER ──
     const filterBtns = document.querySelectorAll('.filter-btn');
     const pubItems = document.querySelectorAll('.pub-item');
+    const archiveSections = document.querySelectorAll('.publication-archive-section');
+    const archiveToggle = document.querySelector('#publication-archive-toggle');
+    const featuredPublicationCount = 10;
+    let activePublicationFilter = 'all';
+    let publicationArchiveOpen = false;
+
+    function updatePublications() {
+      pubItems.forEach((item, index) => {
+        const topics = item.dataset.topics || '';
+        const matchesFilter = activePublicationFilter === 'all' || topics.includes(activePublicationFilter);
+        const isArchived = activePublicationFilter === 'all' && !publicationArchiveOpen && index >= featuredPublicationCount;
+        item.classList.toggle('hidden', !matchesFilter);
+        item.classList.toggle('archive-hidden', matchesFilter && isArchived);
+      });
+
+      archiveSections.forEach(section => {
+        section.classList.toggle('archive-hidden', activePublicationFilter === 'all' && !publicationArchiveOpen);
+      });
+
+      archiveToggle.hidden = activePublicationFilter !== 'all';
+      archiveToggle.setAttribute('aria-expanded', String(publicationArchiveOpen));
+      archiveToggle.textContent = publicationArchiveOpen ? 'Show selected publications' : 'View all publications';
+    }
 
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         filterBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-
-        const filter = btn.dataset.filter;
-        pubItems.forEach(item => {
-          const topics = item.dataset.topics || '';
-          if (filter === 'all' || topics.includes(filter)) {
-            item.classList.remove('hidden');
-          } else {
-            item.classList.add('hidden');
-          }
-        });
+        activePublicationFilter = btn.dataset.filter;
+        updatePublications();
       });
     });
+
+    archiveToggle.addEventListener('click', () => {
+      publicationArchiveOpen = !publicationArchiveOpen;
+      updatePublications();
+    });
+
+    updatePublications();
 
     // ── SUMMARY TOGGLE ──
     document.querySelectorAll('.summary-toggle').forEach(btn => {
@@ -2574,6 +2905,27 @@
         const open = body.classList.toggle('open');
         btn.textContent = open ? 'Hide Summary' : 'Summary';
       });
+    });
+
+    // ── MOBILE NAVIGATION ──
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    navToggle.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', String(open));
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Protect the opener page for every external link that opens a new tab.
+    document.querySelectorAll('a[target="_blank"]').forEach(link => {
+      link.rel = 'noopener noreferrer';
     });
 
     // ── SCROLL REVEAL ──
