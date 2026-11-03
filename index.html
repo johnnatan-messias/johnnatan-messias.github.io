@@ -572,7 +572,28 @@
       line-height: 1.55;
     }
 
-    .archive-toggle {
+    .publication-discovery {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      padding: 1rem 1.25rem;
+      background: var(--paper-2);
+      border-left: 3px solid var(--accent);
+    }
+
+    .publication-discovery p {
+      color: var(--ink-light);
+      font-size: 0.88rem;
+    }
+
+    .archive-toggle[hidden] {
+      display: none;
+    }
+
+    .archive-toggle-bottom {
       margin-top: 1.4rem;
     }
 
@@ -1238,6 +1259,12 @@
           <h2>Selected Publications</h2>
           <div class="section-rule"></div>
           <span class="section-label">Research</span>
+        </div>
+
+        <div class="publication-discovery">
+          <p id="publication-count" role="status" aria-live="polite"></p>
+          <button class="btn btn-primary archive-toggle" type="button" aria-expanded="false"
+            hidden>View all publications</button>
         </div>
 
         <div class="filters reveal reveal-2">
@@ -2388,7 +2415,7 @@
           </div>
         </div>
 
-        <button class="btn btn-outline archive-toggle" id="publication-archive-toggle" type="button"
+        <button class="btn btn-outline archive-toggle archive-toggle-bottom" id="publication-archive-toggle" type="button"
           aria-expanded="false">View all publications</button>
 
         <p style="margin-top:1.5rem; font-size:0.82rem; color:var(--ink-muted); font-style:italic;">
@@ -2883,7 +2910,8 @@
     const filterBtns = document.querySelectorAll('.filter-btn');
     const pubItems = document.querySelectorAll('.pub-item');
     const archiveSections = document.querySelectorAll('.publication-archive-section');
-    const archiveToggle = document.querySelector('#publication-archive-toggle');
+    const archiveToggles = document.querySelectorAll('.archive-toggle');
+    const publicationCount = document.querySelector('#publication-count');
     const featuredPublicationCount = 10;
     let activePublicationFilter = 'all';
     let publicationArchiveOpen = false;
@@ -2901,9 +2929,23 @@
         section.classList.toggle('archive-hidden', activePublicationFilter === 'all' && !publicationArchiveOpen);
       });
 
-      archiveToggle.hidden = activePublicationFilter !== 'all';
-      archiveToggle.setAttribute('aria-expanded', String(publicationArchiveOpen));
-      archiveToggle.textContent = publicationArchiveOpen ? 'Show selected publications' : 'View all publications';
+      const total = pubItems.length;
+      const selected = Math.min(featuredPublicationCount, total);
+      const filtered = activePublicationFilter !== 'all';
+      const matching = [...pubItems].filter(item => !item.classList.contains('hidden')).length;
+      publicationCount.textContent = filtered
+        ? `Showing ${matching} of ${total} publications matching this topic.`
+        : publicationArchiveOpen
+          ? `Showing all ${total} publications.`
+          : `Showing ${selected} of ${total} publications. Explore ${total - selected} more in the full list.`;
+
+      archiveToggles.forEach(toggle => {
+        toggle.hidden = filtered || total <= selected;
+        toggle.setAttribute('aria-expanded', String(publicationArchiveOpen));
+        toggle.textContent = publicationArchiveOpen
+          ? `Show selected publications (${selected})`
+          : `View all ${total} publications`;
+      });
     }
 
     filterBtns.forEach(btn => {
@@ -2915,9 +2957,15 @@
       });
     });
 
-    archiveToggle.addEventListener('click', () => {
-      publicationArchiveOpen = !publicationArchiveOpen;
-      updatePublications();
+    archiveToggles.forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        publicationArchiveOpen = !publicationArchiveOpen;
+        updatePublications();
+        if (!publicationArchiveOpen && toggle.classList.contains('archive-toggle-bottom')) {
+          document.querySelector('#publications').scrollIntoView({ block: 'start' });
+          archiveToggles[0].focus({ preventScroll: true });
+        }
+      });
     });
 
     updatePublications();
