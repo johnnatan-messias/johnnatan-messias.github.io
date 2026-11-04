@@ -2943,7 +2943,7 @@
         toggle.hidden = filtered || total <= selected;
         toggle.setAttribute('aria-expanded', String(publicationArchiveOpen));
         toggle.textContent = publicationArchiveOpen
-          ? `Show all publications (${selected})`
+          ? `Show recent publications (${selected})`
           : `View all ${total} publications`;
       });
     }
